@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./packages",
+    "paths": {
+      "@teitei-tk/*": ["./*/lib", "./*/__tests__"]
+    },
+    "lib": [ "esnext" ]
+  }
+}
