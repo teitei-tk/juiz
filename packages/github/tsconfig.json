@@ -1,12 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./build"
+    "outDir": "./build",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
-  "include": [
-    "./lib/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules/",
-  ]
+  "include": ["./lib/**/*.ts"],
+  "exclude": ["node_modules/"]
 }
