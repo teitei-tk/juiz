@@ -63,7 +63,7 @@ export class GraphQLClient {
 
   request(requestSchema: GraphQLRequestSchema): Promise<ExecutionResult> {
     const validated = schemaValidator(requestSchema);
-    if (validated.length >= 0) {
+    if (validated.length > 0) {
       return Promise.resolve({
         data: null,
         errors: validated
