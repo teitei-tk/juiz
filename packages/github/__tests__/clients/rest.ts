@@ -1,4 +1,4 @@
-import nock = require("nock");
+import * as sinon from "sinon";
 import { RestClient } from "../../lib/clients";
 
 const pullRequestResponse = require("./../fixture/pull_request_response.json");
@@ -9,6 +9,7 @@ describe("github.clients.rest", () => {
     const token = "aaa";
 
     let client: RestClient;
+    let stub: sinon.SinonStub;
 
     beforeEach(() => {
       const params = {
@@ -17,18 +18,18 @@ describe("github.clients.rest", () => {
       };
 
       client = new RestClient(params);
-      console.log(client);
+      stub = sinon.stub(client, "createPullRequest").returns(
+        Promise.resolve({
+          data: pullRequestResponse
+        })
+      );
+    });
+
+    afterEach(() => {
+      stub.restore();
     });
 
     it("create pull request", () => {
-      nock(baseURL, {
-        reqheaders: {
-          authorization: `token ${token}`
-        }
-      })
-        .post("/repos/teitei-tk/juiz/pulls")
-        .reply(201, pullRequestResponse);
-
       const r = client.createPullRequest({
         owner: "teitei-tk",
         repo: "juiz",
