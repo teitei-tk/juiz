@@ -1,3 +1,4 @@
+import * as Axios from "axios";
 import Octkit = require("@octokit/rest");
 
 export type GithubToken = string;
@@ -12,7 +13,7 @@ export interface GithubOption extends Octkit.Options {
 
 export interface PullRequestParams extends Octkit.PullRequestsCreateParams {}
 
-export class Client {
+export class RestClient {
   private github: Octkit;
 
   constructor(options: GithubOption) {
@@ -30,5 +31,20 @@ export class Client {
 
   async createPullRequest(params: PullRequestParams) {
     return await this.github.pullRequests.create(params);
+  }
+}
+
+export class GraphQLClient {
+  client: Axios.AxiosInstance;
+
+  constructor(token: GithubToken) {
+    this.client = Axios.default.create({
+      baseURL: "https://api.github.com/",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    });
   }
 }
