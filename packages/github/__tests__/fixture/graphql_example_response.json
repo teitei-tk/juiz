@@ -1,0 +1,11 @@
+{
+  "data": {
+    "repository": {
+      "name": "juiz",
+      "owner": {
+        "login": "teitei-tk"
+      },
+      "description": "Manage Github PullRequest Code reviewer assign"
+    }
+  }
+}
