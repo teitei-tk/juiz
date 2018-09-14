@@ -45,7 +45,10 @@ export const mergeDefaultOption = (
 export class GraphQLClient {
   client: Axios.AxiosInstance;
 
-  constructor(token: GithubToken, options?: GraphQLClientOption) {
+  constructor(
+    token: GithubToken,
+    options: GraphQLClientOption = defaultClientOption
+  ) {
     const opt = mergeDefaultOption(options);
 
     const headers = Object.assign(opt.headers, {
