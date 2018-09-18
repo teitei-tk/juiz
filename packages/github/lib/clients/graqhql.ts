@@ -1,9 +1,14 @@
 import * as Axios from "axios";
-export const { validate } = require("@octokit/graphql-schema");
+const { validate } = require("@octokit/graphql-schema");
 
 import { GithubToken } from ".";
 import { GraphQLError } from "graphql";
 import { ExecutionResult } from "graphql";
+
+export type ContentType = string;
+export type AcceptHeader = string;
+export type GraphQLEndPoint = string;
+export type GraphQLRequestSchema = string;
 
 // @link https://github.com/graphql/graphql-js/tree/84d05fc5c288f2c20df20cf7f60ee356fa6a2cdb/src/validation
 export const schemaValidator = (
@@ -12,18 +17,15 @@ export const schemaValidator = (
   return validate(schema);
 };
 
-export type ContentType = string;
-export type AcceptHeader = string;
-export type GraphQLEndPoint = string;
-
 export interface GraphQLHeader {
   "Content-Type": ContentType;
   Accept: AcceptHeader;
 }
 
 export interface GraphQLClientOption {
-  baseURL: GraphQLEndPoint;
-  headers: GraphQLHeader;
+  token: GithubToken;
+  baseURL?: GraphQLEndPoint;
+  headers?: GraphQLHeader;
 }
 
 export const defaultClientOption = {
@@ -34,8 +36,6 @@ export const defaultClientOption = {
   }
 };
 
-export type GraphQLRequestSchema = string;
-
 export const mergeDefaultOption = (
   opt: GraphQLClientOption
 ): GraphQLClientOption => {
@@ -45,14 +45,11 @@ export const mergeDefaultOption = (
 export class GraphQLClient {
   client: Axios.AxiosInstance;
 
-  constructor(
-    token: GithubToken,
-    options: GraphQLClientOption = defaultClientOption
-  ) {
+  constructor(options: GraphQLClientOption) {
     const opt = mergeDefaultOption(options);
 
     const headers = Object.assign(opt.headers, {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${opt.token}`
     });
 
     this.client = Axios.default.create({
