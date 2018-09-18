@@ -1,6 +1,6 @@
 import Octkit = require("@octokit/rest");
 
-import { GithubToken } from ".";
+import { GithubToken, APIClientInterface } from ".";
 
 export interface RestClientOption extends Octkit.Options {
   token: GithubToken;
@@ -8,23 +8,28 @@ export interface RestClientOption extends Octkit.Options {
 
 export interface PullRequestParams extends Octkit.PullRequestsCreateParams {}
 
-export class RestClient {
-  private github: Octkit;
+export class RestClient implements APIClientInterface {
+  client: Octkit;
 
   constructor(options: RestClientOption) {
-    this.github = new Octkit(options);
+    this.client = new Octkit(options);
 
     this.authenticate(options.token);
   }
 
   authenticate(token: GithubToken) {
-    return this.github.authenticate({
+    return this.client.authenticate({
       type: "token",
       token: token
     });
   }
 
+  request(): Promise<Octkit> {
+    return Promise.resolve(this.client);
+  }
+
   async createPullRequest(params: PullRequestParams) {
-    return await this.github.pullRequests.create(params);
+    const client = await this.request();
+    return await client.pullRequests.create(params);
   }
 }
