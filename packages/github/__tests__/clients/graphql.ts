@@ -11,7 +11,10 @@ describe("github.clients.graphql", () => {
     let stub: sinon.SinonStub;
 
     beforeEach(() => {
-      client = new GraphQLClient(token);
+      client = new GraphQLClient({
+        token: token
+      });
+
       stub = sinon
         .stub(client, "request")
         .returns(Promise.resolve(exampleResponse));

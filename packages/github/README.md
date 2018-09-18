@@ -30,7 +30,9 @@ for GraphQLClient(v4 api)
 ```typescript
 import { GraphQLClient } from "@teitei-tk/juiz-github/clients";
 
-const client = new GraphQLClient("your_github_token");
+const client = new GraphQLClient({
+  token: your_github_token
+});
 
 const result = await client.request(`{
   repository(owner: "teitei-tk", name: "juiz") {
