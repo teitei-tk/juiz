@@ -1,5 +1,5 @@
 {
-  "name": "@teitei-tk/boilerplate",
+  "name": "@teitei-tk/juiz-team",
   "version": "0.0.1",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
