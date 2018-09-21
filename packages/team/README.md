@@ -1,15 +1,31 @@
-# Juiz package
-
-implmented your code
+# juiz-team package
 
 # How to
 
-### copy to template
+```typescript
+import { UserRepository } from "@teitei-tk/juiz-team/repositories";
 
-```
-$ cp -r boilerplate packages/your-package&& cd packages/your-package
-$ vim package.json # edit your-package
-$ yarn install
-$ cd $PROJECT_ROOT
-$ yarn bootstrap
+const accounts = UserRepository.find_by_github_name(
+  "teitei-tk"
+).to_accounts.map(account => {
+  return {
+    service: account.service_name,
+    account.service_name: account.name
+  }
+});
+
+console.log(accounts);
+/*
+ * eg.
+ * [
+ *    {
+ *      service: "github",
+ *      github: "teitei-tk"
+ *    },
+ *    {
+ *      service: "slack",
+ *      slack: "teitei_tk"
+ *    }
+ * ]
+ */
 ```
