@@ -1,15 +1,12 @@
 import {
   Services,
+  ServieJSON,
   ServiceAccountID,
   ServiceAccountName,
   ServiceAccountInterface
 } from ".";
 
-export interface GithubJSON {
-  id: string;
-  name: string;
-  service: number;
-}
+export interface GithubJSON extends ServieJSON {}
 
 export class Github implements ServiceAccountInterface {
   readonly id: ServiceAccountID;
@@ -19,17 +16,18 @@ export class Github implements ServiceAccountInterface {
   constructor(value: GithubJSON) {
     this.id = value.id;
     this.name = value.name;
-    this.service = value.service;
+    this.service = Services.Github;
   }
 
   static fromJSON(value: GithubJSON) {
     return new Github(value);
   }
+
   toJSON(): GithubJSON {
     return Object.assign({
       id: this.id,
       name: this.name,
-      service: this.service
+      service: Services.Github
     });
   }
 }

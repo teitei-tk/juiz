@@ -9,12 +9,18 @@ export enum Services {
   Slack
 }
 
+export interface ServieJSON {
+  id: ServiceAccountID;
+  name: ServiceAccountName;
+  service: Services;
+}
+
 export interface ServiceAccountInterface {
   id: ServiceAccountID;
   name: ServiceAccountName;
   service: Services;
 
-  toJSON(): Object;
+  toJSON(): ServieJSON;
 }
 
 export { Github, Slack };

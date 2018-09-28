@@ -1,15 +1,12 @@
 import {
   Services,
+  ServieJSON,
   ServiceAccountID,
   ServiceAccountName,
   ServiceAccountInterface
 } from ".";
 
-export interface SlackJSON {
-  id: string;
-  name: string;
-  service: number;
-}
+export interface SlackJSON extends ServieJSON {}
 
 export class Slack implements ServiceAccountInterface {
   readonly id: ServiceAccountID;
@@ -19,7 +16,7 @@ export class Slack implements ServiceAccountInterface {
   constructor(value: SlackJSON) {
     this.id = value.id;
     this.name = value.name;
-    this.service = value.service;
+    this.service = Services.Slack;
   }
 
   static fromJSON(value: SlackJSON) {
@@ -30,7 +27,7 @@ export class Slack implements ServiceAccountInterface {
     return Object.assign({
       id: this.id,
       name: this.name,
-      service: this.service
+      service: Services.Slack
     });
   }
 }

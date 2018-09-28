@@ -1,9 +1,21 @@
 import { v4 } from "uuid";
 
-import { ServiceAccountInterface } from "./accounts";
+import {
+  ServieJSON,
+  ServiceAccountInterface,
+  Services,
+  Github,
+  Slack
+} from "./accounts";
 
 export type AccountID = string;
 export type AccountName = string;
+
+export interface AccountJSON {
+  id: string;
+  name: string;
+  serviceAccounts: Array<ServieJSON>;
+}
 
 export class Account {
   readonly id: AccountID;
@@ -29,6 +41,40 @@ export class Account {
 
   appendServiceAccount(serviceAccount: ServiceAccountInterface): void {
     this.serviceAccounts.push(serviceAccount);
+  }
+
+  findServiceAccount(service: Services): ServiceAccountInterface {
+    return this.serviceAccounts.find(r => {
+      return r.service == service;
+    });
+  }
+
+  toJSON(): AccountJSON {
+    return Object.assign({
+      id: this.id,
+      name: this.name,
+      serviceAccounts: this.serviceAccounts.map(account => {
+        return account.toJSON();
+      })
+    });
+  }
+
+  static fromJSON(json: AccountJSON) {
+    const serviceAccounts = json.serviceAccounts.map(obj => {
+      if (obj.service == Services.Github) {
+        return Github.fromJSON(obj);
+      } else {
+        return Slack.fromJSON(obj);
+      }
+    });
+
+    return new Account(
+      {
+        id: json.id,
+        name: json.name
+      },
+      serviceAccounts
+    );
   }
 
   static new(name: AccountName): Account {
