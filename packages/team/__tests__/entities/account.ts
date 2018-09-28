@@ -21,11 +21,7 @@ describe("team.entities.account", () => {
       const account = Account.new(accountName);
 
       expect(account.name).toBe(accountName);
-<<<<<<< HEAD
-      expect(account.accounts.length).toBe(0);
-=======
       expect(account.serviceAccounts.length).toBe(0);
->>>>>>> account typing
     });
 
     it("#generateUUID", () => {
