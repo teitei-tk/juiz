@@ -9,7 +9,7 @@ export enum Services {
   Slack
 }
 
-export interface ServieJSON {
+export interface ServiceJSON {
   id: ServiceAccountID;
   name: ServiceAccountName;
   service: Services;
@@ -20,7 +20,7 @@ export interface ServiceAccountInterface {
   name: ServiceAccountName;
   service: Services;
 
-  toJSON(): ServieJSON;
+  toJSON(): ServiceJSON;
 }
 
 export { Github, Slack };

@@ -1,12 +1,12 @@
 import {
   Services,
-  ServieJSON,
+  ServiceJSON,
   ServiceAccountID,
   ServiceAccountName,
   ServiceAccountInterface
 } from ".";
 
-export interface GithubJSON extends ServieJSON {}
+export interface GithubJSON extends ServiceJSON {}
 
 export class Github implements ServiceAccountInterface {
   readonly id: ServiceAccountID;

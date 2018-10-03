@@ -1,12 +1,12 @@
 import {
   Services,
-  ServieJSON,
+  ServiceJSON,
   ServiceAccountID,
   ServiceAccountName,
   ServiceAccountInterface
 } from ".";
 
-export interface SlackJSON extends ServieJSON {}
+export interface SlackJSON extends ServiceJSON {}
 
 export class Slack implements ServiceAccountInterface {
   readonly id: ServiceAccountID;
