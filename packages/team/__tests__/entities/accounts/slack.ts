@@ -14,7 +14,26 @@ describe("team.entities.accounts.slack", () => {
 
       expect(slack.id).toBe(id);
       expect(slack.name).toBe(name);
+      expect(slack.displayName).toBe(name);
       expect(slack.service).toBe(Services.Slack);
+    });
+
+    it("displayName", () => {
+      const name = "teitei_tk";
+      const displayName = "teitei-tk";
+
+      const slack = new Slack({
+        id: "aaa",
+        name: name,
+        displayName: displayName,
+        service: Services.Slack
+      });
+
+      expect(slack.name).toBe(name);
+      expect(slack.displayName).not.toBe(name);
+      expect(slack.displayName).not.toBe(slack.name);
+
+      expect(slack.displayName).toBe(displayName);
     });
 
     it("#fromJSON", () => {

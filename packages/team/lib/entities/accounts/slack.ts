@@ -11,11 +11,16 @@ export interface SlackJSON extends ServiceJSON {}
 export class Slack implements ServiceAccountInterface {
   readonly id: ServiceAccountID;
   readonly name: ServiceAccountName;
+  readonly displayName: ServiceAccountName;
   readonly service: Services.Slack;
 
   constructor(value: SlackJSON) {
     this.id = value.id;
     this.name = value.name;
+    if (!value.displayName) {
+      this.displayName = value.name;
+    }
+
     this.service = Services.Slack;
   }
 
@@ -27,6 +32,7 @@ export class Slack implements ServiceAccountInterface {
     return Object.assign({
       id: this.id,
       name: this.name,
+      displayName: this.displayName,
       service: Services.Slack
     });
   }

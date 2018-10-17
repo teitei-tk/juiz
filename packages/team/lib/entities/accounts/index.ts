@@ -12,12 +12,14 @@ export enum Services {
 export interface ServiceJSON {
   id: ServiceAccountID;
   name: ServiceAccountName;
+  displayName?: ServiceAccountName;
   service: Services;
 }
 
 export interface ServiceAccountInterface {
   id: ServiceAccountID;
   name: ServiceAccountName;
+  displayName: ServiceAccountName;
   service: Services;
 
   toJSON(): ServiceJSON;
