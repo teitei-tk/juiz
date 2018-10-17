@@ -36,7 +36,6 @@ describe("team.entities.account", () => {
       };
 
       const account = Account.fromJSON(json);
-
       expect(account.toJSON()).toBe(json);
     });
 

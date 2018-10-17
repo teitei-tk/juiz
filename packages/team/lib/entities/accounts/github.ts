@@ -11,11 +11,16 @@ export interface GithubJSON extends ServiceJSON {}
 export class Github implements ServiceAccountInterface {
   readonly id: ServiceAccountID;
   readonly name: ServiceAccountName;
+  readonly displayName: ServiceAccountName;
   readonly service: Services.Github;
 
   constructor(value: GithubJSON) {
     this.id = value.id;
     this.name = value.name;
+    if (!value.displayName) {
+      this.displayName = value.name;
+    }
+
     this.service = Services.Github;
   }
 
@@ -27,6 +32,7 @@ export class Github implements ServiceAccountInterface {
     return Object.assign({
       id: this.id,
       name: this.name,
+      displayName: this.displayName,
       service: Services.Github
     });
   }
