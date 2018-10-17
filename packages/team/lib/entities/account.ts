@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 
 import {
-  ServieJSON,
+  ServiceJSON,
   ServiceAccountInterface,
   Services,
   Github,
@@ -14,7 +14,7 @@ export type AccountName = string;
 export interface AccountJSON {
   id: string;
   name: string;
-  serviceAccounts: Array<ServieJSON>;
+  serviceAccounts: Array<ServiceJSON>;
 }
 
 export class Account {
