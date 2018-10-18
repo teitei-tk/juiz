@@ -35,5 +35,8 @@
   "dependencies": {
     "uuid": "^3.3.2",
     "@juiz/datastore": "^0.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
