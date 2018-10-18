@@ -5,8 +5,8 @@
 
 Manage Github PullRequest Code reviewer assign
 
-## packages
-
-* juiz-github package
-  * https://github.com/teitei-tk/juiz/tree/master/packages/github
-  * API v3(REST) and v4(GraphQL) Client
+| packages                                                                            | version                                                                                                                              | Description                                                               |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| [@juiz/datastore](https://github.com/teitei-tk/juiz/tree/master/packages/datastore) | [![npm (scoped)](https://img.shields.io/npm/v/@juiz/datastore.svg?style=flat-square)](https://www.npmjs.com/package/@juiz/datastore) | Database Accessor Objcets                                                 |
+| [@juiz/github](https://github.com/teitei-tk/juiz/tree/master/packages/github)       | [![npm (scoped)](https://img.shields.io/npm/v/@juiz/github.svg?flat-square)](https://www.npmjs.com/package/@juiz/github)             | Gihutb API Client (v3 and v4)                                             |
+| [@juiz/team](https://github.com/teitei-tk/juiz/tree/master/packages/team)           | [![npm (scoped)](https://img.shields.io/npm/v/@juiz/team.svg?style=flat-square)](https://www.npmjs.com/package/@juiz/team)           | team developments utility logic(Shuffle, Notify, CodeReview Request, etc) |

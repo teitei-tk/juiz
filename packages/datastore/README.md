@@ -1,15 +1,5 @@
-# Juiz package
+# juiz/dataStore
 
-implmented your code
+[![npm (scoped)](https://img.shields.io/npm/v/@juiz/datastore.svg?style=flat-square)](https://www.npmjs.com/package/@juiz/datastore)
 
-# How to
-
-### copy to template
-
-```
-$ cp -r boilerplate packages/your-package&& cd packages/your-package
-$ vim package.json # edit your-package
-$ yarn install
-$ cd $PROJECT_ROOT
-$ yarn bootstrap
-```
+Database Accesser Objects

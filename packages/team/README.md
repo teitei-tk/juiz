@@ -1,4 +1,8 @@
-# juiz-team package
+# juiz/team package
+
+[![npm (scoped)](https://img.shields.io/npm/v/@juiz/team.svg?style=flat-square)](https://www.npmjs.com/package/@juiz/team)
+
+team developments utility logic(Shuffle, Notify, CodeReview Request, etc)
 
 # How to
 

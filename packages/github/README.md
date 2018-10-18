@@ -1,4 +1,8 @@
-# juiz-github package
+# juiz/github package
+
+[![npm (scoped)](https://img.shields.io/npm/v/@juiz/github.svg?flat-square)](https://www.npmjs.com/package/@juiz/github)
+
+Gihutb API Clients
 
 # How to
 
