@@ -30,5 +30,8 @@
     "testMatch": [
       "**/__tests__/*.+(ts|tsx|js)"
     ]
+  },
+  "dependencies": {
+    "aws-sdk": "^2.337.0"
   }
 }
