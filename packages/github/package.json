@@ -1,5 +1,5 @@
 {
-  "name": "@teitei-tk/juiz-github",
+  "name": "@juiz/github",
   "version": "0.0.1",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
