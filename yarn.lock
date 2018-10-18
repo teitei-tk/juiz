@@ -16,9 +16,6 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@juiz/datastore@file:packages/@juiz/datastore":
-  version "0.0.1"
-
 "@lerna/add@^3.1.4":
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-3.1.4.tgz#d0d20eb1ca14a43b11ae80cce77da960388529cb"
