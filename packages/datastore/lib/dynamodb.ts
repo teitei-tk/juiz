@@ -5,8 +5,12 @@ export class DynamoDBClient implements IDataStore {
   protected tableName: string;
   protected context: AWS.DynamoDB.DocumentClient;
 
-  constructor(tableName: string, context: AWS.DynamoDB.DocumentClient) {
+  constructor(tableName: string, context?: AWS.DynamoDB.DocumentClient) {
     this.tableName = tableName;
+
+    if (!context) {
+      context = new AWS.DynamoDB.DocumentClient();
+    }
     this.context = context;
   }
 

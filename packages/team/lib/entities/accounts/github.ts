@@ -17,6 +17,7 @@ export class Github implements ServiceAccountInterface {
   constructor(value: GithubJSON) {
     this.id = value.id;
     this.name = value.name;
+    this.displayName = value.displayName;
     if (!value.displayName) {
       this.displayName = value.name;
     }

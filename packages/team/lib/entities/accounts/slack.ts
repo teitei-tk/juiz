@@ -17,6 +17,7 @@ export class Slack implements ServiceAccountInterface {
   constructor(value: SlackJSON) {
     this.id = value.id;
     this.name = value.name;
+    this.displayName = value.displayName;
     if (!value.displayName) {
       this.displayName = value.name;
     }

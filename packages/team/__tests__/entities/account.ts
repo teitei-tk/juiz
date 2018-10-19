@@ -36,7 +36,29 @@ describe("team.entities.account", () => {
       };
 
       const account = Account.fromJSON(json);
-      expect(account.toJSON()).toBe(json);
+      expect(account.toJSON()).not.toBe(json);
+
+      const expectJson = {
+        id: "aaaaaaaa",
+        name: "teitei_tk",
+        serviceAccounts: [
+          {
+            id: "a",
+            displayName: "teitei-tk",
+            name: "teitei-tk",
+            service: Services.Github
+          },
+          {
+            id: "a",
+            displayName: "teitei_tk",
+            name: "teitei_tk",
+            service: Services.Slack
+          }
+        ]
+      };
+
+      const expectAccount = Account.fromJSON(expectJson);
+      expect(expectAccount.toJSON()).toEqual(expectJson);
     });
 
     it("#fromJSON", () => {
