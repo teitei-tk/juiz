@@ -5,6 +5,4 @@ import { IDataStore } from "@juiz/datastore";
 
 export interface IRepository<T, K> extends IRead<T, K>, IWrite<T> {
   context: IDataStore;
-
-  new (context: IDataStore): IRepository<T, K>;
 }

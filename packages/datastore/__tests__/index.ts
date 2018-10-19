@@ -1,8 +1,8 @@
-import { DataStore } from "./../lib";
+import { IDataStore } from "./../lib";
 
 describe("@juiz/datastore", () => {
   it("DataStore is interface", () => {
-    class TestStore implements DataStore {}
+    class TestStore implements IDataStore {}
     expect(TestStore).not.toBe(null);
   });
 });

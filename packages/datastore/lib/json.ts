@@ -35,7 +35,7 @@ export class JSONClient implements IDataStore {
     return true;
   }
 
-  create(data: unknown) {
+  create(data: object) {
     fs.writeFileSync(this.jsonPath, JSON.stringify(data));
   }
 
