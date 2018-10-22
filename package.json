@@ -11,13 +11,13 @@
     "packages/@juiz/*"
   ],
   "scripts": {
-    "prepublish": "yarn test && yarn build",
     "publish": "monorepo-utils-publish",
     "bootstrap": "lerna bootstrap",
     "build": "yarn build:packages",
     "test": "yarn test:packages",
     "build:packages": "lerna run build",
-    "test:packages": "lerna run test"
+    "test:packages": "lerna run test",
+    "deploy:production": "yarn test && yarn build"
   },
   "devDependencies": {
     "@monorepo-utils/publish": "^2.0.1",
