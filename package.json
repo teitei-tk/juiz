@@ -14,7 +14,7 @@
     "publish": "monorepo-utils-publish",
     "bootstrap": "lerna bootstrap",
     "build": "yarn build:packages",
-    "test": "yarn test:packages",
+    "test": "yarn build && yarn test:packages",
     "build:packages": "lerna run build",
     "test:packages": "lerna run test",
     "deploy:production": "yarn test && yarn build"
