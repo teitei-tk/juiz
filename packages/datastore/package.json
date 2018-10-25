@@ -1,15 +1,15 @@
 {
   "name": "@juiz/datastore",
   "version": "0.0.3",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "license": "Apache-2.0",
   "scripts": {
     "build": "tsc",
     "test": "jest"
   },
   "files": [
-    "build/"
+    "lib/"
   ],
   "devDependencies": {
     "@types/jest": "^23.3.1",

@@ -17,7 +17,7 @@
     "test": "yarn build && yarn test:packages",
     "build:packages": "lerna run build",
     "test:packages": "lerna run test",
-    "deploy:production": "yarn test && yarn build"
+    "deploy:production": "yarn test && yarn build && yarn run publish"
   },
   "devDependencies": {
     "@monorepo-utils/publish": "^2.0.1",
