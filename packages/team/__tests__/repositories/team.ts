@@ -1,6 +1,6 @@
 import { JSONClient } from "@juiz/datastore";
 
-import { Services } from "./../../lib/entities/accounts";
+import { Services } from "./../../lib/entities/service";
 import { Account } from "./../../lib/entities/account";
 import { Team, TeamJSON } from "./../../lib/entities/team";
 import { ITeamRepository } from "./../../lib/repositories/interfaces/team";
@@ -115,8 +115,6 @@ describe("team.repositories.team", () => {
       },
       [Account.fromJSON(accountJson)]
     );
-
-    console.log(team.accounts[0].toJSON());
 
     const result = await repo.create(team);
     expect(result.entity.id).toBe(id);

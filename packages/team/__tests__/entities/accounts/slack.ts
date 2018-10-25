@@ -1,4 +1,5 @@
-import { Slack, Services } from "../../../lib/entities/accounts";
+import { Services } from "../../../lib/entities/service";
+import { Slack } from "../../../lib/entities/accounts";
 
 describe("team.entities.accounts.slack", () => {
   describe("Slack", () => {

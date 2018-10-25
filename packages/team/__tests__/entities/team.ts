@@ -1,5 +1,5 @@
 import { Team } from "../../lib/entities/team";
-import { Services } from "../../lib/entities/accounts";
+import { Services } from "../../lib/entities/service";
 import { Account } from "../../lib/entities/account";
 
 describe("team.entities.team", () => {

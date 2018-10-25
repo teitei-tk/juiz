@@ -1,4 +1,5 @@
-import { Github, Services } from "../../../lib/entities/accounts";
+import { Services } from "../../../lib/entities/service";
+import { Github } from "../../../lib/entities/accounts";
 
 describe("team.entities.accounts.Github", () => {
   describe("Github", () => {

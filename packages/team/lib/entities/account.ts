@@ -1,12 +1,9 @@
-import { v4 } from "uuid";
+import { Entity } from ".";
 
-import {
-  ServiceJSON,
-  ServiceAccountInterface,
-  Services,
-  Github,
-  Slack
-} from "./accounts";
+import { ServiceJSON, ServiceAccount, Services } from "./service";
+
+import { Slack } from "./accounts/slack";
+import { Github } from "./accounts/github";
 
 export type AccountID = string;
 export type AccountName = string;
@@ -17,18 +14,18 @@ export interface AccountJSON {
   serviceAccounts: Array<ServiceJSON>;
 }
 
-export class Account {
-  readonly id: AccountID;
-  readonly name: AccountName;
-  readonly serviceAccounts?: Array<ServiceAccountInterface>;
+export class Account extends Entity<AccountID, AccountName, AccountJSON> {
+  readonly serviceAccounts?: Array<ServiceAccount<Services>>;
 
   constructor(
     value: {
       id: AccountID;
       name: AccountName;
     },
-    accounts?: Array<ServiceAccountInterface>
+    accounts?: Array<ServiceAccount<Services>>
   ) {
+    super();
+
     this.id = value.id;
     this.name = value.name;
 
@@ -39,24 +36,27 @@ export class Account {
     this.serviceAccounts = accounts;
   }
 
-  appendServiceAccount(serviceAccount: ServiceAccountInterface): void {
+  appendServiceAccount(serviceAccount: ServiceAccount<Services>): void {
     this.serviceAccounts.push(serviceAccount);
   }
 
-  findServiceAccount(service: Services): ServiceAccountInterface {
+  findServiceAccount(service: Services): ServiceAccount<Services> {
     return this.serviceAccounts.find(r => {
       return r.service == service;
     });
   }
 
   toJSON(): AccountJSON {
-    return Object.assign({
-      id: this.id,
-      name: this.name,
-      serviceAccounts: this.serviceAccounts.map(account => {
-        return account.toJSON();
-      })
-    });
+    return Object.assign(
+      {},
+      {
+        id: this.id,
+        name: this.name,
+        serviceAccounts: this.serviceAccounts.map(account => {
+          return account.toJSON();
+        })
+      }
+    );
   }
 
   static fromJSON(json: AccountJSON) {
@@ -82,9 +82,5 @@ export class Account {
       id: Account.generateUUID(),
       name: name
     });
-  }
-
-  static generateUUID(): AccountID {
-    return v4();
   }
 }

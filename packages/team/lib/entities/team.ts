@@ -1,5 +1,4 @@
-import { v4 } from "uuid";
-
+import { Entity } from ".";
 import { Account, AccountJSON } from "./account";
 
 export type TeamID = string;
@@ -11,12 +10,12 @@ export interface TeamJSON {
   accounts?: Array<AccountJSON>;
 }
 
-export class Team {
-  readonly id: TeamID;
-  readonly name: TeamName;
+export class Team extends Entity<TeamID, TeamName, TeamJSON> {
   readonly accounts: Array<Account>;
 
   constructor(value: TeamJSON, accounts?: Array<Account>) {
+    super();
+
     this.id = value.id;
     this.name = value.name;
     if (!accounts) {
@@ -66,9 +65,5 @@ export class Team {
       id: Team.generateUUID(),
       name: name
     });
-  }
-
-  static generateUUID(): TeamID {
-    return v4();
   }
 }

@@ -1,20 +1,10 @@
-import {
-  Services,
-  ServiceJSON,
-  ServiceAccountID,
-  ServiceAccountName,
-  ServiceAccountInterface
-} from ".";
+import { Services, ServiceJSON, ServiceAccount } from "./../service";
 
 export interface SlackJSON extends ServiceJSON {}
 
-export class Slack implements ServiceAccountInterface {
-  readonly id: ServiceAccountID;
-  readonly name: ServiceAccountName;
-  readonly displayName: ServiceAccountName;
-  readonly service: Services.Slack;
-
+export class Slack extends ServiceAccount<Services.Slack> {
   constructor(value: SlackJSON) {
+    super();
     this.id = value.id;
     this.name = value.name;
     this.displayName = value.displayName;
@@ -30,11 +20,14 @@ export class Slack implements ServiceAccountInterface {
   }
 
   toJSON(): SlackJSON {
-    return Object.assign({
-      id: this.id,
-      name: this.name,
-      displayName: this.displayName,
-      service: Services.Slack
-    });
+    return Object.assign(
+      {},
+      {
+        id: this.id,
+        name: this.name,
+        displayName: this.displayName,
+        service: Services.Slack
+      }
+    );
   }
 }

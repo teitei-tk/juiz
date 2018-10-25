@@ -1,20 +1,11 @@
-import {
-  Services,
-  ServiceJSON,
-  ServiceAccountID,
-  ServiceAccountName,
-  ServiceAccountInterface
-} from ".";
+import { Services, ServiceJSON, ServiceAccount } from "./../service";
 
 export interface GithubJSON extends ServiceJSON {}
 
-export class Github implements ServiceAccountInterface {
-  readonly id: ServiceAccountID;
-  readonly name: ServiceAccountName;
-  readonly displayName: ServiceAccountName;
-  readonly service: Services.Github;
-
+export class Github extends ServiceAccount<Services.Github> {
   constructor(value: GithubJSON) {
+    super();
+
     this.id = value.id;
     this.name = value.name;
     this.displayName = value.displayName;
@@ -30,11 +21,14 @@ export class Github implements ServiceAccountInterface {
   }
 
   toJSON(): GithubJSON {
-    return Object.assign({
-      id: this.id,
-      name: this.name,
-      displayName: this.displayName,
-      service: Services.Github
-    });
+    return Object.assign(
+      {},
+      {
+        id: this.id,
+        name: this.name,
+        displayName: this.displayName,
+        service: Services.Github
+      }
+    );
   }
 }
