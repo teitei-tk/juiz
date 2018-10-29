@@ -1,17 +1,18 @@
-import { Entity } from ".";
+import { Entity, EntityJSON } from ".";
 
 import { Team, TeamJSON } from "./team";
 
 export type DutyID = string;
 export type DutyName = string;
 
-export interface DutyJSON {
+export interface DutyJSON extends EntityJSON {
   id: DutyID;
   name: DutyName;
   teams: Array<TeamJSON>;
 }
 
-export class Duty extends Entity<DutyID, DutyName, DutyJSON> {
+export class Duty extends Entity<DutyJSON> {
+  readonly name: DutyName;
   readonly teams: Array<Team>;
 
   constructor(value: { id: DutyID; name: DutyName; teams: Array<Team> }) {

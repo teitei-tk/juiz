@@ -1,20 +1,20 @@
-import { Entity } from ".";
+import { Entity, EntityJSON } from ".";
 
 import { ServiceJSON, ServiceAccount, Services } from "./service";
 
-import { Slack } from "./accounts/slack";
-import { Github } from "./accounts/github";
+import { Slack, Github } from "./accounts";
 
 export type AccountID = string;
 export type AccountName = string;
 
-export interface AccountJSON {
-  id: string;
-  name: string;
+export interface AccountJSON extends EntityJSON {
+  id: AccountID;
+  name: AccountName;
   serviceAccounts: Array<ServiceJSON>;
 }
 
-export class Account extends Entity<AccountID, AccountName, AccountJSON> {
+export class Account extends Entity<AccountJSON> {
+  readonly name: AccountName;
   readonly serviceAccounts?: Array<ServiceAccount<Services>>;
 
   constructor(

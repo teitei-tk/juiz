@@ -1,8 +1,15 @@
-import { Services, ServiceJSON, ServiceAccount } from "./../service";
+import {
+  Services,
+  ServiceJSON,
+  ServiceAccount,
+  ServiceAccountName
+} from "./../service";
 
 export interface GithubJSON extends ServiceJSON {}
 
 export class Github extends ServiceAccount<Services.Github> {
+  readonly name: ServiceAccountName;
+
   constructor(value: GithubJSON) {
     super();
 

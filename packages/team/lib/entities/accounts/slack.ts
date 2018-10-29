@@ -1,10 +1,18 @@
-import { Services, ServiceJSON, ServiceAccount } from "./../service";
+import {
+  Services,
+  ServiceJSON,
+  ServiceAccount,
+  ServiceAccountName
+} from "./../service";
 
 export interface SlackJSON extends ServiceJSON {}
 
 export class Slack extends ServiceAccount<Services.Slack> {
+  readonly name: ServiceAccountName;
+
   constructor(value: SlackJSON) {
     super();
+
     this.id = value.id;
     this.name = value.name;
     this.displayName = value.displayName;

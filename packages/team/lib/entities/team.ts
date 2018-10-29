@@ -1,16 +1,17 @@
-import { Entity } from ".";
+import { Entity, EntityJSON } from ".";
 import { Account, AccountJSON } from "./account";
 
 export type TeamID = string;
 export type TeamName = string;
 
-export interface TeamJSON {
+export interface TeamJSON extends EntityJSON {
   id: TeamID;
   name: TeamName;
   accounts?: Array<AccountJSON>;
 }
 
-export class Team extends Entity<TeamID, TeamName, TeamJSON> {
+export class Team extends Entity<TeamJSON> {
+  readonly name: TeamName;
   readonly accounts: Array<Account>;
 
   constructor(value: TeamJSON, accounts?: Array<Account>) {

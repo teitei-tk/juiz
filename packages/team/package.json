@@ -1,8 +1,8 @@
 {
   "name": "@juiz/team",
-  "version": "0.0.4",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "version": "0.0.5",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "license": "Apache-2.0",
   "scripts": {
     "build": "tsc",
