@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import * as Axios from "axios";
 
 import {
   FormGroup,
@@ -13,6 +14,8 @@ import {
 import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 import "@blueprintjs/core/lib/css/blueprint.css";
 
+import { IAccountRegisterPayload } from "./interfaces/request";
+
 interface IAccountFormGroupState {}
 
 interface IAccountFormProps {}
@@ -20,6 +23,12 @@ interface IAccountFormProps {}
 export const AccountFormToaster = Toaster.create({
   className: "account-toaster",
   position: Position.TOP
+});
+
+export const defaultBaseURL = "0.0.0.0:3000" || process.env["JUIZ_UI_BASE_URL"];
+
+export const APIClient = Axios.default.create({
+  baseURL: defaultBaseURL
 });
 
 export class AccountFormGroup extends React.PureComponent<
@@ -52,6 +61,24 @@ export class AccountFormGroup extends React.PureComponent<
         timeout: 2500
       });
     }
+
+    const payload: IAccountRegisterPayload = {
+      accountName,
+      githubName,
+      slackName
+    };
+
+    APIClient.post("/account/new", payload)
+      .then(r => {
+        AccountFormToaster.show({
+          message: "account register success"
+        });
+      })
+      .catch(r => {
+        AccountFormToaster.show({
+          message: "account register failed"
+        });
+      });
   };
 
   public render() {

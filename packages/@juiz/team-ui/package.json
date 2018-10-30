@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "files": [
-    "lib/"
+    "build/"
   ],
   "devDependencies": {
     "@types/express": "^4.16.0",
@@ -43,6 +43,8 @@
   },
   "dependencies": {
     "@blueprintjs/core": "^3.7.0",
+    "@juiz/team": "^0.0.5",
+    "axios": "^0.18.0",
     "css-loader": "^1.0.0",
     "express": "^4.16.4",
     "react": "^16.6.0",

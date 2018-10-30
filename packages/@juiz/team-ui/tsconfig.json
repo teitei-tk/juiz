@@ -3,12 +3,12 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "outDir": "./build",
     "jsx": "react",
     "module": "commonjs",
     "target": "ES2017",
-    "lib": ["dom", "esnext"]
+    "rootDir": "./lib",
+    "outDir": "./build"
   },
-  "include": ["./lib/**/*.ts", "lib/**/*.tsx"],
-  "exclude": ["node_modules/"]
+  "include": ["./lib/**/*.ts", "./lib/**/*.tsx"],
+  "exclude": ["node_modules", "build", "__tests__"]
 }
