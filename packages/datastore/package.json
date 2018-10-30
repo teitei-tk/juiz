@@ -1,6 +1,6 @@
 {
   "name": "@juiz/datastore",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "license": "Apache-2.0",
@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "files": [
-    "lib/"
+    "build/"
   ],
   "devDependencies": {
     "@types/jest": "^23.3.1",

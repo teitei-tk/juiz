@@ -1,6 +1,4 @@
-import { Entity, EntityJSON } from ".";
-
-import { Team, TeamJSON } from "./team";
+import { Entity, EntityJSON, Team, TeamJSON } from ".";
 
 export type DutyID = string;
 export type DutyName = string;

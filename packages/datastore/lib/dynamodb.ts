@@ -1,5 +1,5 @@
 import * as AWS from "aws-sdk";
-import { IDataStore } from "./interface";
+import { IDataStore } from ".";
 
 export class DynamoDBClient implements IDataStore {
   protected tableName: string;

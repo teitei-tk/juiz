@@ -1,2 +1,2 @@
-const packageName = "boilerplate";
-export { packageName as PackageName };
+export * from "./entities";
+export * from "./repositories";

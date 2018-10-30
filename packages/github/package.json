@@ -1,6 +1,6 @@
 {
   "name": "@juiz/github",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "license": "Apache-2.0",
@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "files": [
-    "lib/"
+    "build/"
   ],
   "dependencies": {
     "@octokit/graphql-schema": "^4.8.0",

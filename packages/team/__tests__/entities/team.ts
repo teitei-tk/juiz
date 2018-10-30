@@ -1,6 +1,4 @@
-import { Team } from "../../lib/entities/team";
-import { Services } from "../../lib/entities/service";
-import { Account } from "../../lib/entities/account";
+import { Team, Services, Account } from "../../lib";
 
 describe("team.entities.team", () => {
   describe("Team", () => {

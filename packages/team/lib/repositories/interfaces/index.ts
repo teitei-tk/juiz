@@ -1,8 +1,7 @@
-import { IRead } from "./read";
-import { IWrite } from "./write";
-
-import { IDataStore } from "@juiz/datastore";
-
-export interface IRepository<T> extends IRead<T>, IWrite<T> {
-  context: IDataStore;
-}
+export * from "./repository";
+export * from "./read";
+export * from "./write";
+export * from "./team";
+export * from "./duty";
+export * from "./account";
+export * from "./accounts";

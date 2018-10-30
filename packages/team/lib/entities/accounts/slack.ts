@@ -3,7 +3,7 @@ import {
   ServiceJSON,
   ServiceAccount,
   ServiceAccountName
-} from "./../service";
+} from "./..";
 
 export interface SlackJSON extends ServiceJSON {}
 

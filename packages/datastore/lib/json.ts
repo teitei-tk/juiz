@@ -1,7 +1,7 @@
 import * as path from "path";
 import * as fs from "fs";
 
-import { IDataStore } from "./interface";
+import { IDataStore } from ".";
 
 export type filePath = string;
 export type fileName = string;

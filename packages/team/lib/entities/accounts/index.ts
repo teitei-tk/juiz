@@ -1,4 +1,2 @@
-import { Slack } from "./slack";
-import { Github } from "./github";
-
-export { Slack, Github };
+export * from "./slack";
+export * from "./github";

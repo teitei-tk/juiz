@@ -1,9 +1,12 @@
 import { JSONClient } from "@juiz/datastore";
 
-import { Services } from "./../../lib/entities/service";
-import { Account } from "./../../lib/entities/account";
-import { Team, TeamJSON } from "./../../lib/entities/team";
-import { ITeamRepository } from "./../../lib/repositories/interfaces/team";
+import {
+  Services,
+  Account,
+  Team,
+  TeamJSON,
+  ITeamRepository
+} from "./../../lib";
 
 class TeamRepository implements ITeamRepository {
   context: JSONClient;

@@ -1,8 +1,12 @@
-import { Entity, EntityJSON } from ".";
-
-import { ServiceJSON, ServiceAccount, Services } from "./service";
-
-import { Slack, Github } from "./accounts";
+import {
+  Entity,
+  EntityJSON,
+  ServiceAccount,
+  ServiceJSON,
+  Services,
+  Slack,
+  Github
+} from ".";
 
 export type AccountID = string;
 export type AccountName = string;

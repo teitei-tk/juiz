@@ -1,10 +1,11 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./packages",
+    "baseUrl": ".",
     "paths": {
-      "@juiz/*": ["./*/lib", "./*/__tests__"]
+      "@juiz/*": ["./packages/@juiz/*/lib"],
+      "*": ["./packages/*/lib"]
     },
-    "lib": ["esnext"]
+    "lib": ["esnext", "dom"]
   }
 }
