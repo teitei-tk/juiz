@@ -38,4 +38,12 @@ export class Slack extends ServiceAccount<Services.Slack> {
       }
     );
   }
+
+  static new(name: ServiceAccountName) {
+    return new Slack({
+      id: Slack.generateUUID(),
+      name,
+      service: Services.Slack
+    });
+  }
 }

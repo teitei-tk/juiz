@@ -60,3 +60,4 @@ typings/
 
 packages/**/**/*.js
 packages/**/**/*.d.ts
+packages/**/db/*

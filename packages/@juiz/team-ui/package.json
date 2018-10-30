@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc && yarn webpack",
     "watch": "yarn webpack -w",
-    "test": "jest"
+    "test": "jest",
+    "serve": "ts-node ./lib/server.ts"
   },
   "files": [
     "build/"

@@ -38,4 +38,12 @@ export class Github extends ServiceAccount<Services.Github> {
       }
     );
   }
+
+  static new(name: ServiceAccountName) {
+    return new Github({
+      id: Github.generateUUID(),
+      name,
+      service: Services.Github
+    });
+  }
 }

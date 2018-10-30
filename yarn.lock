@@ -42,6 +42,21 @@
     classnames "^2.2"
     tslib "^1.9.0"
 
+"@juiz/datastore@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@juiz/datastore/-/datastore-0.0.3.tgz#7cf3027b858ae427b96cb5b69254d0cfb7186024"
+  integrity sha512-pm7UeqmV+vM/dHsmghbIacErbzXi5DGJXALZRCR3ad4JclpN6PDOfVubHlpXx7ijI2dr6toSySwsaSUfwBzkZw==
+  dependencies:
+    aws-sdk "^2.337.0"
+
+"@juiz/team@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@juiz/team/-/team-0.0.5.tgz#e5919ef09fa3e4c2dd859791e46924582724edf5"
+  integrity sha512-SnJuLENRqe0LN2/fDfEEE146aOfTm0U5tZiGaIMVoBCJjNDnL5lx2DCGFc2kWJllINbu62mLwn0ToqtMdqopGg==
+  dependencies:
+    "@juiz/datastore" "^0.0.3"
+    uuid "^3.3.2"
+
 "@lerna/add@^3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-3.4.1.tgz#d41068317e30f530df48220d256b5e79690b1877"
