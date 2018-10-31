@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as Axios from "axios";
 
 import {
   FormGroup,
@@ -10,10 +9,9 @@ import {
   Toaster
 } from "@blueprintjs/core";
 
-import "@blueprintjs/icons/lib/css/blueprint-icons.css";
-import "@blueprintjs/core/lib/css/blueprint.css";
+import { IAccountRegisterPayload } from "../../interfaces/reqest";
 
-import { IAccountRegisterPayload } from "../interfaces/reqest";
+import { APIClient } from "./../apiClient";
 
 interface IAccountFormGroupState {}
 interface IAccountFormProps {}
@@ -21,13 +19,6 @@ interface IAccountFormProps {}
 export const AccountFormToaster = Toaster.create({
   className: "account-toaster",
   position: Position.TOP
-});
-
-export const defaultBaseURL =
-  "http://localhost:3000" || process.env["JUIZ_UI_BASE_URL"];
-
-export const APIClient = Axios.default.create({
-  baseURL: defaultBaseURL
 });
 
 export class AccountFormGroup extends React.PureComponent<
@@ -113,11 +104,5 @@ export class AccountFormGroup extends React.PureComponent<
         <Button icon="refresh" onClick={this.submitAccountForm} text="submit" />
       </div>
     );
-  }
-}
-
-export class App extends React.PureComponent {
-  render() {
-    return <AccountFormGroup />;
   }
 }

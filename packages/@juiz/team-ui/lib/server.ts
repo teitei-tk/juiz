@@ -13,6 +13,14 @@ app.use(express.static(path.join(__dirname, "./../build")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.get("/account/list", (req, res) => {
+  const responseData = {
+    data: {}
+  };
+
+  res.send(responseData);
+});
+
 app.post("/account/new", (req, res) => {
   const payload: IAccountRegisterPayload = req.body;
 
