@@ -3,6 +3,9 @@ import * as ReactRouterDom from "react-router-dom";
 
 import { HomeIndex, AccountFormGroup, TeamFormGroup } from ".";
 
+import "@blueprintjs/icons/lib/css/blueprint-icons.css";
+import "@blueprintjs/core/lib/css/blueprint.css";
+
 export class Application extends React.PureComponent {
   public render() {
     return (

@@ -9,17 +9,18 @@ import {
   Toaster
 } from "@blueprintjs/core";
 
-import { APIClient } from "../apiClient";
+import { APIClient } from "./..";
+import { ITeamRegisterPayload } from "../../interfaces";
 
 interface ITeamNewFormGroupState {}
 interface ITeamNewFormProps {}
+
+export const TeamAccounts = () => {};
 
 export const TeamFormToaster = Toaster.create({
   className: "team-toaster",
   position: Position.TOP
 });
-
-export const TeamAccounts = () => {};
 
 export class TeamFormGroup extends React.PureComponent<
   ITeamNewFormProps,
@@ -27,11 +28,37 @@ export class TeamFormGroup extends React.PureComponent<
 > {
   public state = {};
 
-  protected submitNewTeamForm = () => {};
+  protected submitNewTeamForm = () => {
+    const teamNameNode = document.querySelector(
+      "#team-input"
+    ) as HTMLInputElement;
 
-  componentDidMount() {
-    console.log("component");
-  }
+    const teamName = teamNameNode.value;
+    if (!teamName) {
+      return TeamFormToaster.show({
+        message: "required field is not input",
+        timeout: 2500
+      });
+    }
+    TeamFormToaster.clear();
+
+    const payload: ITeamRegisterPayload = {
+      teamName
+    };
+
+    const result = APIClient.post("/team/new", payload);
+    result
+      .then(r => {
+        TeamFormToaster.show({
+          message: "team register success"
+        });
+      })
+      .catch(r => {
+        TeamFormToaster.show({
+          message: "team register failed"
+        });
+      });
+  };
 
   public render() {
     return (
@@ -43,7 +70,7 @@ export class TeamFormGroup extends React.PureComponent<
           labelFor="team-input"
           labelInfo="(required"
         >
-          <InputGroup id="team-input" placeholder="your name" />
+          <InputGroup id="team-input" placeholder="new team name" />
         </FormGroup>
 
         <Button icon="refresh" onClick={this.submitNewTeamForm} text="submit" />

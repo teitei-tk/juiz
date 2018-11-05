@@ -7,9 +7,7 @@ export interface AccountJSON {
 }
 
 export class AccountRepository extends Repository<Account> {
-  constructor() {
-    super();
-
+  setupDataStoreClient() {
     this.context = newDataStoreClient("account.json");
   }
 }

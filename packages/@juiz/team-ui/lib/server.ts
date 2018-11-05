@@ -2,9 +2,13 @@ import * as path from "path";
 import express from "express";
 import bodyParser from "body-parser";
 
-import { IAccountRegisterPayload } from "./interfaces/reqest";
+import {
+  IAccountRegisterPayload,
+  ITeamRegisterPayload
+} from "./interfaces/reqest";
 
 import { AccountService } from "./services";
+import { TeamService } from "./services/team";
 
 const app = express();
 const port = 3000;
@@ -26,6 +30,21 @@ app.post("/account/new", (req, res) => {
 
   const service = new AccountService();
   const result = service.newAccount(payload);
+
+  const responseData = {
+    data: {
+      result
+    }
+  };
+
+  res.send(responseData);
+});
+
+app.post("/team/new", async (req, res) => {
+  const payload: ITeamRegisterPayload = req.body;
+
+  const service = new TeamService();
+  const result = await service.newTeam(payload.teamName);
 
   const responseData = {
     data: {

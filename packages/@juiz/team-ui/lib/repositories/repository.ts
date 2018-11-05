@@ -10,6 +10,14 @@ export abstract class Repository<T extends Entity<EntityJSON>>
   implements IRepository<T> {
   context: JSONClient;
 
+  constructor() {
+    this.setupDataStoreClient();
+  }
+
+  setupDataStoreClient() {
+    throw new Error("not implemented");
+  }
+
   create(json: T): Promise<{ entity: T }> {
     this.context.put(json.toJSON());
 
@@ -35,11 +43,9 @@ export abstract class Repository<T extends Entity<EntityJSON>>
     });
   }
 
-  find<J>(): Promise<{ entity: T }> {
-    const j = this.context.get<J>();
-    return Promise.resolve({
-      entity: Entity.fromJSON(j) as T;
-    });
+  async find<J>(): Promise<J> {
+    const j = await this.context.get<J>();
+    return j;
   }
 
   findAll() {
