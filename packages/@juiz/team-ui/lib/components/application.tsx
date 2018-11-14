@@ -9,7 +9,7 @@ import "@blueprintjs/core/lib/css/blueprint.css";
 export class Application extends React.PureComponent {
   public render() {
     return (
-      <ReactRouterDom.BrowserRouter>
+      <ReactRouterDom.HashRouter>
         <div>
           <ReactRouterDom.Route path="/" component={HomeIndex} />
           <ReactRouterDom.Route
@@ -18,7 +18,7 @@ export class Application extends React.PureComponent {
           />
           <ReactRouterDom.Route path="/team/new" component={TeamFormGroup} />
         </div>
-      </ReactRouterDom.BrowserRouter>
+      </ReactRouterDom.HashRouter>
     );
   }
 }
