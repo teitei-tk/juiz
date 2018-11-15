@@ -9,12 +9,22 @@ export class HomeIndex extends React.PureComponent {
         <li>
           <Link to="/">Home</Link>
         </li>
-        <li>
-          <Link to="/account/new">AccountNew</Link>
-        </li>
-        <li>
-          <Link to="/team/new">TeamNew</Link>
-        </li>
+        <UL>
+          <li>
+            <Link to="/account/new">New Account</Link>
+          </li>
+        </UL>
+        <UL>
+          <li>
+            <Link to="/team/list">All Teams</Link>
+          </li>
+          <li>
+            <Link to="/team/new">New Team</Link>
+          </li>
+          <li>
+            <Link to="/team/edit">Team Edit</Link>
+          </li>
+        </UL>
       </UL>
     );
   }

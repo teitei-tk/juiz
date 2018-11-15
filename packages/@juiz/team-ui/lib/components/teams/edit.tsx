@@ -7,6 +7,10 @@ export class TeamEdit extends React.PureComponent<
   ITeamEditProps,
   ITeamEditState
 > {
+  componentDidMount() {
+    console.log("component did mount");
+  }
+
   public render() {
     return (
       <div>

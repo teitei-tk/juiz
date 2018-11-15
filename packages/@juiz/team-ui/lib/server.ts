@@ -41,7 +41,7 @@ app.post("/account/new", (req, res) => {
   res.send(responseData);
 });
 
-app.get("/teams", async (_, res) => {
+app.get("/team/list", async (_, res) => {
   const service = new TeamService();
   const teams = await service.findAllTeam();
 
