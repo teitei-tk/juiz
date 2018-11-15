@@ -8,6 +8,16 @@ export class TeamService {
     this.teamRepo = new TeamRepository();
   }
 
+  async findAllTeam(): Promise<{ entities: Array<Team> }> {
+    const teamsJSON = await this.teamRepo.find<TeamsJSON>();
+
+    return {
+      entities: teamsJSON.entities.map(json => {
+        return Team.fromJSON(json);
+      })
+    };
+  }
+
   async newTeam(newTeamName: TeamName): Promise<boolean> {
     if (await this.isTeamExists(newTeamName)) {
       return false;
@@ -25,7 +35,6 @@ export class TeamService {
 
   async isTeamExists(name: TeamName): Promise<boolean> {
     const teamsJSON = await this.teamRepo.find<TeamsJSON>();
-    console.log(teamsJSON);
     if (teamsJSON.entities.length <= 0) {
       return false;
     }

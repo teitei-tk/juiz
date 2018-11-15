@@ -9,7 +9,7 @@ import {
   Toaster
 } from "@blueprintjs/core";
 
-import { IAccountRegisterPayload } from "../../interfaces/reqest";
+import { IAccountRegisterPayload } from "../../interfaces/request";
 
 import { APIClient } from "./../apiClient";
 

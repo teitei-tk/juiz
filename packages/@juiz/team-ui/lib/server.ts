@@ -4,8 +4,9 @@ import bodyParser from "body-parser";
 
 import {
   IAccountRegisterPayload,
-  ITeamRegisterPayload
-} from "./interfaces/reqest";
+  ITeamRegisterPayload,
+  IAllTeamsResponse
+} from "./interfaces";
 
 import { AccountService } from "./services";
 import { TeamService } from "./services/team";
@@ -34,6 +35,23 @@ app.post("/account/new", (req, res) => {
   const responseData = {
     data: {
       result
+    }
+  };
+
+  res.send(responseData);
+});
+
+app.get("/teams", async (_, res) => {
+  const service = new TeamService();
+  const teams = await service.findAllTeam();
+
+  const teamResponse = teams.entities.map(entity => {
+    return entity.toJSON();
+  });
+
+  const responseData: IAllTeamsResponse = {
+    data: {
+      entities: teamResponse
     }
   };
 
