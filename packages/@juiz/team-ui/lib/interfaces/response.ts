@@ -5,3 +5,7 @@ export interface IAllTeamsResponse {
     entities: Array<TeamJSON>;
   };
 }
+
+export interface ITeamResponse {
+  data: TeamJSON;
+}

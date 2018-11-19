@@ -1,5 +1,5 @@
 import { TeamsJSON, TeamRepository } from "./../repositories";
-import { Team, TeamJSON, TeamName } from "@juiz/team";
+import { Team, TeamJSON, TeamName, TeamID } from "@juiz/team";
 
 export class TeamService {
   teamRepo: TeamRepository;
@@ -16,6 +16,16 @@ export class TeamService {
         return Team.fromJSON(json);
       })
     };
+  }
+
+  async findTeam(id: TeamID): Promise<Team> {
+    const result = await this.findAllTeam();
+
+    const team = result.entities.find(team => {
+      return team.id === id;
+    });
+
+    return team;
   }
 
   async newTeam(newTeamName: TeamName): Promise<boolean> {

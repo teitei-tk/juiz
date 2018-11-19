@@ -23,7 +23,7 @@ export class Application extends React.PureComponent {
             component={AccountFormGroup}
           />
           <ReactRouterDom.Route path="/team/new" component={TeamFormGroup} />
-          <ReactRouterDom.Route path="/team/edit" component={TeamEdit} />
+          <ReactRouterDom.Route path="/team/edit/:id" component={TeamEdit} />
           <ReactRouterDom.Route path="/team/list" component={TeamList} />
         </div>
       </ReactRouterDom.HashRouter>

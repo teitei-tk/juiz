@@ -5,11 +5,13 @@ import bodyParser from "body-parser";
 import {
   IAccountRegisterPayload,
   ITeamRegisterPayload,
-  IAllTeamsResponse
+  IAllTeamsResponse,
+  ITeamResponse
 } from "./interfaces";
 
 import { AccountService } from "./services";
 import { TeamService } from "./services/team";
+import { TeamID, TeamJSON } from "@juiz/team";
 
 const app = express();
 const port = 3000;
@@ -36,6 +38,24 @@ app.post("/account/new", (req, res) => {
     data: {
       result
     }
+  };
+
+  res.send(responseData);
+});
+
+app.get("/team", async (req, res) => {
+  const payload: { id: TeamID } = req.query;
+
+  const service = new TeamService();
+  const team = await service.findTeam(payload.id);
+  if (!team) {
+    return res.send({
+      data: null
+    });
+  }
+
+  const responseData: ITeamResponse = {
+    data: team.toJSON()
   };
 
   res.send(responseData);
