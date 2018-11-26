@@ -10,7 +10,7 @@ export interface IAccessTokenCredentials {
 }
 
 export const APPLICATION_SCOPES = [
-  "https://www.googleapis.com/auth/spreadsheets.readonly"
+  "https://www.googleapis.com/auth/spreadsheets"
 ];
 export const ACCESS_TOKEN_DIR = path.join(process.env["HOME"]);
 export const ACCESS_TOKEN_FILE_NAME = ".juiz.sheets.googleapis.com.json";

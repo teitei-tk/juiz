@@ -17,7 +17,8 @@ import {
   getAccessTokenCredentials
 } from "@juiz/datastore-google-apps-sheets";
 
-// example sheet. https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit#gid=0
+// example sheet.
+// https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit#gid=0
 const auth = newOAuthClient(GoogleAppsParamsFromEnv);
 const client = new SpreadSheet({
   oauthClient: auth,
@@ -63,9 +64,21 @@ console.log(result.data.values);
  *    [ 'Thomas', 'Male', '2. Sophomore', 'RI', 'Art' ],
  *    [ 'Will', 'Male', '4. Senior', 'FL', 'Math' ]
  * ]
- *
- *
  */
+
+// NOTICE:
+// example sheet is readonly
+// If you want to try it please use the spread sheet created with your google account
+const response = await client.update({
+  payload: [
+    {
+      range: "sheet 1!C1:C",
+      values: [["updated"]]
+    }
+  ]
+});
+
+console.log(response);
 ```
 
 ### Variables

@@ -1,10 +1,12 @@
+import { IDataStore } from "@juiz/datastore";
 import { google, sheets_v4 } from "googleapis";
+
 import * as DataStoreGoogleSheets from ".";
 
 export type SpreadSheetID = string;
 export type SheetClient = sheets_v4.Sheets;
 
-export class SpreadSheet {
+export class SpreadSheet implements IDataStore {
   private readonly oauthClient: DataStoreGoogleSheets.OAuthClient;
   private readonly spreadSheetID: SpreadSheetID;
 
@@ -22,11 +24,49 @@ export class SpreadSheet {
     this.spreadSheetClient = google.sheets("v4");
   }
 
-  fetch(query: { range: string }) {
+  fetch(query: { range: string; majorDimension?: string }) {
+    const payload = {
+      majorDimension: "ROWS",
+      ...query
+    };
+
     return this.spreadSheetClient.spreadsheets.values.get({
-      range: query.range,
+      majorDimension: payload.majorDimension,
+      range: payload.range,
       auth: this.oauthClient,
       spreadsheetId: this.spreadSheetID
+    });
+  }
+
+  update(query: {
+    payload: Array<{
+      range: string;
+      values: Array<Array<unknown>>;
+      majorDimension?: string;
+    }>;
+    valueInputOption?: string;
+  }) {
+    const requestQuery = {
+      valueInputOption: "USER_ENTERED",
+      ...query
+    };
+
+    const requestBodyData: Array<
+      sheets_v4.Schema$ValueRange
+    > = requestQuery.payload.map(value => {
+      return {
+        majorDimension: "ROWS",
+        ...value
+      };
+    });
+
+    return this.spreadSheetClient.spreadsheets.values.batchUpdate({
+      auth: this.oauthClient,
+      spreadsheetId: this.spreadSheetID,
+      requestBody: {
+        valueInputOption: requestQuery.valueInputOption,
+        data: requestBodyData
+      }
     });
   }
 }
