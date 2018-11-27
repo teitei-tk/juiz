@@ -6,6 +6,11 @@ import * as DataStoreGoogleSheets from ".";
 export type SpreadSheetID = string;
 export type SheetClient = sheets_v4.Sheets;
 
+export type ValueRenderOption =
+  | "FORMATTED_VALUE"
+  | "UNFORMATTED_VALUE"
+  | "FORMULA";
+
 export class SpreadSheet implements IDataStore {
   private readonly oauthClient: DataStoreGoogleSheets.OAuthClient;
   private readonly spreadSheetID: SpreadSheetID;
@@ -24,9 +29,14 @@ export class SpreadSheet implements IDataStore {
     this.spreadSheetClient = google.sheets("v4");
   }
 
-  fetch(query: { range: string; majorDimension?: string }) {
+  fetch(query: {
+    range: string;
+    majorDimension?: string;
+    valueRenderOption?: ValueRenderOption;
+  }) {
     const payload = {
       majorDimension: "ROWS",
+      valueRenderOption: "UNFORMATTED_VALUE",
       ...query
     };
 
@@ -34,7 +44,8 @@ export class SpreadSheet implements IDataStore {
       majorDimension: payload.majorDimension,
       range: payload.range,
       auth: this.oauthClient,
-      spreadsheetId: this.spreadSheetID
+      spreadsheetId: this.spreadSheetID,
+      valueRenderOption: payload.valueRenderOption
     });
   }
 
