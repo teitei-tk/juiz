@@ -11,6 +11,15 @@ export type ValueRenderOption =
   | "UNFORMATTED_VALUE"
   | "FORMULA";
 
+export type DateTimeRenderOption = "SERIAL_NUMBER" | "FORMATTED_STRING";
+
+export type ValueInputOption =
+  | "INPUT_VALUE_OPTION_UNSPECIFIED"
+  | "RAW"
+  | "USER_ENTERED";
+
+export type Dimension = "DIMENSION_UNSPECIFIED" | "ROWS" | "COLUMNS";
+
 export class SpreadSheet implements IDataStore {
   private readonly oauthClient: DataStoreGoogleSheets.OAuthClient;
   private readonly spreadSheetID: SpreadSheetID;
@@ -31,7 +40,7 @@ export class SpreadSheet implements IDataStore {
 
   fetch(query: {
     range: string;
-    majorDimension?: string;
+    majorDimension?: Dimension;
     valueRenderOption?: ValueRenderOption;
   }) {
     const payload = {
@@ -53,18 +62,26 @@ export class SpreadSheet implements IDataStore {
     payload: Array<{
       range: string;
       values: Array<Array<unknown>>;
-      majorDimension?: string;
+      majorDimension?: Dimension;
     }>;
-    valueInputOption?: string;
+    options?: {
+      valueInputOption?: ValueInputOption;
+      responseDateTimeRenderOption?: DateTimeRenderOption;
+      responseValueRenderOption?: ValueRenderOption;
+      includeValuesInResponse?: boolean;
+    };
   }) {
     const requestQuery = {
       valueInputOption: "USER_ENTERED",
-      ...query
+      responseDateTimeRenderOption: "SERIAL_NUMBER",
+      responseValueRenderOption: "FORMATTED_VALUE",
+      includeValuesInResponse: true,
+      ...query.options
     };
 
-    const requestBodyData: Array<
+    const requestPayload: Array<
       sheets_v4.Schema$ValueRange
-    > = requestQuery.payload.map(value => {
+    > = query.payload.map(value => {
       return {
         majorDimension: "ROWS",
         ...value
@@ -76,7 +93,10 @@ export class SpreadSheet implements IDataStore {
       spreadsheetId: this.spreadSheetID,
       requestBody: {
         valueInputOption: requestQuery.valueInputOption,
-        data: requestBodyData
+        responseDateTimeRenderOption: requestQuery.responseDateTimeRenderOption,
+        responseValueRenderOption: requestQuery.responseValueRenderOption,
+        includeValuesInResponse: requestQuery.includeValuesInResponse,
+        data: requestPayload
       }
     });
   }

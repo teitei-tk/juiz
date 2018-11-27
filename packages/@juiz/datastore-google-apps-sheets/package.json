@@ -1,9 +1,17 @@
 {
   "name": "@juiz/datastore-google-apps-sheets",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "Google sheets API Client with TypeScript",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "license": "Apache-2.0",
+  "keywords": [
+    "google",
+    "google-api",
+    "google-sheets",
+    "google-sheets-api",
+    "typescript"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest",
@@ -19,6 +27,7 @@
     "@types/jest": "^23.3.1",
     "jest": "^23.5.0",
     "ts-jest": "^23.1.3",
+    "ts-node": "^7.0.1",
     "typescript": "^3.0.1"
   },
   "jest": {
@@ -41,7 +50,6 @@
   "dependencies": {
     "@juiz/datastore": "^0.0.4",
     "google-auth-library": "^2.0.1",
-    "googleapis": "^35.0.0",
-    "ts-node": "^7.0.1"
+    "googleapis": "^35.0.0"
   }
 }
