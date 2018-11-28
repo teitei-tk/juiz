@@ -8,7 +8,13 @@ export interface IGoogleAppsParams {
   redirectURL: string;
 }
 
-export const GoogleAppsParamsFromEnv = {
+export interface IGoogleAuthClientParams {
+  secret: string;
+  clientID: string;
+  redirectURL: string;
+}
+
+export const GoogleAppsParamsFromEnv: IGoogleAppsParams = {
   secret: process.env["JUIZ_GOOGLE_APPS_CLIENT_SECRET"],
   clientID: process.env["JUIZ_GOOGLE_APPS_CLIENT_ID"],
   redirectURL: process.env["JUIZ_GOOGLE_APPS_REDIRECT_URL"]
