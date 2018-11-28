@@ -6,6 +6,7 @@ TODO: OAuth2 ClientID and JSON Download flow
 
 - https://console.developers.google.com/flows/enableapi?apiid=sheets.googleapis.com
 - https://developers.google.com/sheets/api/guides/authorizing#APIKey
+- https://dotstud.io/blog/google-spreadsheets-from-nodejs/
 
 ## Usage
 
