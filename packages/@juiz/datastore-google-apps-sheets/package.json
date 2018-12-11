@@ -1,6 +1,6 @@
 {
   "name": "@juiz/datastore-google-apps-sheets",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Google sheets API Client with TypeScript",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
