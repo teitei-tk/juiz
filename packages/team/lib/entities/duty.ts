@@ -6,14 +6,14 @@ export type DutyName = string;
 export interface DutyJSON extends EntityJSON {
   id: DutyID;
   name: DutyName;
-  teams: Array<TeamJSON>;
+  teams: TeamJSON[];
 }
 
 export class Duty extends Entity<DutyJSON> {
-  readonly name: DutyName;
-  readonly teams: Array<Team>;
+  public readonly name: DutyName;
+  public readonly teams: Team[];
 
-  constructor(value: { id: DutyID; name: DutyName; teams: Array<Team> }) {
+  public constructor(value: { id: DutyID; name: DutyName; teams: Team[] }) {
     super();
     this.id = value.id;
     this.name = value.name;
@@ -21,18 +21,15 @@ export class Duty extends Entity<DutyJSON> {
     this.teams = value.teams;
   }
 
-  toJSON(): DutyJSON {
-    return Object.assign(
-      {},
-      {
-        id: this.id,
-        name: this.name,
-        teams: this.teams.map(t => t.toJSON())
-      }
-    );
+  public toJSON(): DutyJSON {
+    return {
+      id: this.id,
+      name: this.name,
+      teams: this.teams.map(t => t.toJSON())
+    };
   }
 
-  static fromJSON(json: DutyJSON) {
+  public static fromJSON(json: DutyJSON) {
     return new Duty({
       id: json.id,
       name: json.name,
@@ -42,7 +39,7 @@ export class Duty extends Entity<DutyJSON> {
     });
   }
 
-  static new(name: DutyName, teams: Array<Team>) {
+  public static new(name: DutyName, teams: Team[]) {
     return new Duty({
       id: Duty.generateUUID(),
       name,

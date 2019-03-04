@@ -32,7 +32,7 @@
     ]
   },
   "dependencies": {
-    "@juiz/datastore": "^0.0.3",
+    "@juiz/datastore": "^0.0.4",
     "uuid": "^3.3.2"
   },
   "publishConfig": {

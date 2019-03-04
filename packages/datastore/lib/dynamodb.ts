@@ -1,7 +1,7 @@
 import * as AWS from "aws-sdk";
-import { IDataStore } from ".";
+import { DataStore } from ".";
 
-export class DynamoDBClient implements IDataStore {
+export class DynamoDBClient implements DataStore {
   protected tableName: string;
   protected context: AWS.DynamoDB.DocumentClient;
 

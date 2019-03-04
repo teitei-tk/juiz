@@ -20,7 +20,7 @@ export interface ServiceJSON extends EntityJSON {
 export abstract class ServiceAccount<S extends Services> extends Entity<
   ServiceJSON
 > {
-  name: ServiceAccountName;
-  displayName: ServiceAccountName;
-  service: S;
+  public name: ServiceAccountName;
+  public displayName: ServiceAccountName;
+  public service: S;
 }

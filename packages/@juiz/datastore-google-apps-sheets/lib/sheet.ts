@@ -59,11 +59,11 @@ export class SpreadSheet implements IDataStore {
   }
 
   update(query: {
-    payload: Array<{
+    payload: {
       range: string;
-      values: Array<Array<unknown>>;
+      values: unknown[][];
       majorDimension?: Dimension;
-    }>;
+    }[];
     options?: {
       valueInputOption?: ValueInputOption;
       responseDateTimeRenderOption?: DateTimeRenderOption;
@@ -79,14 +79,14 @@ export class SpreadSheet implements IDataStore {
       ...query.options
     };
 
-    const requestPayload: Array<
-      sheets_v4.Schema$ValueRange
-    > = query.payload.map(value => {
-      return {
-        majorDimension: "ROWS",
-        ...value
-      };
-    });
+    const requestPayload: sheets_v4.Schema$ValueRange[] = query.payload.map(
+      value => {
+        return {
+          majorDimension: "ROWS",
+          ...value
+        };
+      }
+    );
 
     return this.spreadSheetClient.spreadsheets.values.batchUpdate({
       auth: this.oauthClient,

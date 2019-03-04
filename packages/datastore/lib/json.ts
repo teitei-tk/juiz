@@ -1,14 +1,14 @@
 import * as path from "path";
 import * as fs from "fs";
 
-import { IDataStore } from ".";
+import { DataStore } from ".";
 
 export type filePath = string;
 export type fileName = string;
 
 export const defaultJSONFileName = "json_client.json";
 
-export class JSONClient implements IDataStore {
+export class JSONClient implements DataStore {
   readonly jsonPath: filePath;
 
   constructor(jsonPath: filePath, jsonName?: fileName) {

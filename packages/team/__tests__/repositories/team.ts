@@ -1,14 +1,8 @@
 import { JSONClient } from "@juiz/datastore";
 
-import {
-  Services,
-  Account,
-  Team,
-  TeamJSON,
-  ITeamRepository
-} from "./../../lib";
+import { Services, Account, Team, TeamJSON, Repository } from "./../../lib";
 
-class TeamRepository implements ITeamRepository {
+class TeamRepository implements Repository<Team> {
   context: JSONClient;
 
   constructor(context: JSONClient) {
@@ -123,9 +117,10 @@ describe("team.repositories.team", () => {
     expect(result.entity.id).toBe(id);
     expect(result.entity.name).toBe(name);
 
-    const newTeam = Team.fromJSON(
-      Object.assign({}, team.toJSON(), { name: "newTeam" })
-    );
+    const newTeam = Team.fromJSON({
+      ...team.toJSON(),
+      ...{ name: "newTeam" }
+    });
     const nextResult = await repo.update(newTeam);
     expect(nextResult.entity.id).toBe(id);
     expect(nextResult.entity.id).toBe(result.entity.id);

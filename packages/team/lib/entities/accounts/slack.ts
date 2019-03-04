@@ -5,12 +5,10 @@ import {
   ServiceAccountName
 } from "./..";
 
-export interface SlackJSON extends ServiceJSON {}
-
 export class Slack extends ServiceAccount<Services.Slack> {
-  readonly name: ServiceAccountName;
+  public readonly name: ServiceAccountName;
 
-  constructor(value: SlackJSON) {
+  public constructor(value: ServiceJSON) {
     super();
 
     this.id = value.id;
@@ -23,11 +21,11 @@ export class Slack extends ServiceAccount<Services.Slack> {
     this.service = Services.Slack;
   }
 
-  static fromJSON(value: SlackJSON) {
+  public static fromJSON(value: ServiceJSON) {
     return new Slack(value);
   }
 
-  toJSON(): SlackJSON {
+  public toJSON(): ServiceJSON {
     return Object.assign(
       {},
       {
