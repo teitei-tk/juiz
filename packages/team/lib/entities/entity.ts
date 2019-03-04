@@ -8,7 +8,7 @@ export interface EntityJSON {
 }
 
 export abstract class Entity<J extends EntityJSON> {
-  protected id: EntityID;
+  public id: EntityID;
 
   public abstract toJSON(): J;
 
