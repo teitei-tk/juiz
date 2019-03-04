@@ -14,19 +14,19 @@ export type AccountName = string;
 export interface AccountJSON extends EntityJSON {
   id: AccountID;
   name: AccountName;
-  serviceAccounts: Array<ServiceJSON>;
+  serviceAccounts: ServiceJSON[];
 }
 
 export class Account extends Entity<AccountJSON> {
-  readonly name: AccountName;
-  readonly serviceAccounts?: Array<ServiceAccount<Services>>;
+  public readonly name: AccountName;
+  public readonly serviceAccounts?: ServiceAccount<Services>[];
 
-  constructor(
+  public constructor(
     value: {
       id: AccountID;
       name: AccountName;
     },
-    accounts?: Array<ServiceAccount<Services>>
+    accounts?: ServiceAccount<Services>[]
   ) {
     super();
 
@@ -40,30 +40,27 @@ export class Account extends Entity<AccountJSON> {
     this.serviceAccounts = accounts;
   }
 
-  appendServiceAccount(serviceAccount: ServiceAccount<Services>): void {
+  public appendServiceAccount(serviceAccount: ServiceAccount<Services>): void {
     this.serviceAccounts.push(serviceAccount);
   }
 
-  findServiceAccount(service: Services): ServiceAccount<Services> {
+  public findServiceAccount(service: Services): ServiceAccount<Services> {
     return this.serviceAccounts.find(r => {
       return r.service == service;
     });
   }
 
-  toJSON(): AccountJSON {
-    return Object.assign(
-      {},
-      {
-        id: this.id,
-        name: this.name,
-        serviceAccounts: this.serviceAccounts.map(account => {
-          return account.toJSON();
-        })
-      }
-    );
+  public toJSON(): AccountJSON {
+    return {
+      id: this.id,
+      name: this.name,
+      serviceAccounts: this.serviceAccounts.map(account => {
+        return account.toJSON();
+      })
+    };
   }
 
-  static fromJSON(json: AccountJSON) {
+  public static fromJSON(json: AccountJSON) {
     const serviceAccounts = json.serviceAccounts.map(obj => {
       if (obj.service == Services.Github) {
         return Github.fromJSON(obj);
@@ -81,7 +78,7 @@ export class Account extends Entity<AccountJSON> {
     );
   }
 
-  static new(name: AccountName): Account {
+  public static new(name: AccountName): Account {
     return new Account({
       id: Account.generateUUID(),
       name: name

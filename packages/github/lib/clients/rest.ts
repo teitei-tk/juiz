@@ -6,29 +6,27 @@ export interface RestClientOption extends Octkit.Options {
   token: GithubToken;
 }
 
-export interface PullRequestParams extends Octkit.PullRequestsCreateParams {}
-
 export class RestClient implements APIClientInterface {
-  client: Octkit;
+  public readonly client: Octkit;
 
-  constructor(options: RestClientOption) {
+  public constructor(options: RestClientOption) {
     this.client = new Octkit(options);
 
     this.authenticate(options.token);
   }
 
-  authenticate(token: GithubToken) {
+  protected authenticate(token: GithubToken) {
     return this.client.authenticate({
       type: "token",
       token: token
     });
   }
 
-  request(): Promise<Octkit> {
+  public request(): Promise<Octkit> {
     return Promise.resolve(this.client);
   }
 
-  async createPullRequest(params: PullRequestParams) {
+  public async createPullRequest(params: Octkit.PullRequestsCreateParams) {
     const client = await this.request();
     return await client.pullRequests.create(params);
   }

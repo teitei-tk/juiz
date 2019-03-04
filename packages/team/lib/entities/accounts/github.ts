@@ -5,12 +5,10 @@ import {
   ServiceAccountName
 } from "./..";
 
-export interface GithubJSON extends ServiceJSON {}
-
 export class Github extends ServiceAccount<Services.Github> {
-  readonly name: ServiceAccountName;
+  public readonly name: ServiceAccountName;
 
-  constructor(value: GithubJSON) {
+  public constructor(value: ServiceJSON) {
     super();
 
     this.id = value.id;
@@ -23,19 +21,16 @@ export class Github extends ServiceAccount<Services.Github> {
     this.service = Services.Github;
   }
 
-  static fromJSON(value: GithubJSON) {
+  public static fromJSON(value: ServiceJSON) {
     return new Github(value);
   }
 
-  toJSON(): GithubJSON {
-    return Object.assign(
-      {},
-      {
-        id: this.id,
-        name: this.name,
-        displayName: this.displayName,
-        service: Services.Github
-      }
-    );
+  public toJSON(): ServiceJSON {
+    return {
+      id: this.id,
+      name: this.name,
+      displayName: this.displayName,
+      service: Services.Github
+    };
   }
 }

@@ -8,15 +8,11 @@ export interface EntityJSON {
 }
 
 export abstract class Entity<J extends EntityJSON> {
-  id: EntityID;
+  protected id: EntityID;
 
-  abstract toJSON(): J;
+  public abstract toJSON(): J;
 
-  static fromJSON(json: any): any {
-    throw new Error("not implemented");
-  }
-
-  static generateUUID(): string {
+  public static generateUUID(): string {
     return v4();
   }
 }

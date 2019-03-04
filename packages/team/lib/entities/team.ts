@@ -7,14 +7,14 @@ export type TeamName = string;
 export interface TeamJSON extends EntityJSON {
   id: TeamID;
   name: TeamName;
-  accounts?: Array<AccountJSON>;
+  accounts?: AccountJSON[];
 }
 
 export class Team extends Entity<TeamJSON> {
-  readonly name: TeamName;
-  readonly accounts: Array<Account>;
+  public readonly name: TeamName;
+  public readonly accounts: Account[];
 
-  constructor(value: TeamJSON, accounts?: Array<Account>) {
+  public constructor(value: TeamJSON, accounts?: Account[]) {
     super();
 
     this.id = value.id;
@@ -26,30 +26,22 @@ export class Team extends Entity<TeamJSON> {
     }
   }
 
-  toJSON(): TeamJSON {
-    return Object.assign(
-      {},
-      {
-        id: this.id,
-        name: this.name,
-        accounts: this.accounts.map(account => {
-          return account.toJSON();
-        })
-      }
-    );
+  public toJSON(): TeamJSON {
+    return {
+      id: this.id,
+      name: this.name,
+      accounts: this.accounts.map(account => {
+        return account.toJSON();
+      })
+    };
   }
 
-  static fromJSON(json: TeamJSON): Team {
+  public static fromJSON(json: TeamJSON): Team {
+    const accounts: Account[] = [];
     if (json.accounts) {
-      return new Team(
-        {
-          id: json.id,
-          name: json.name
-        },
-        json.accounts.map(account => {
-          return Account.fromJSON(account);
-        })
-      );
+      json.accounts.forEach(a => {
+        accounts.push(Account.fromJSON(a));
+      });
     }
 
     return new Team(
@@ -57,11 +49,11 @@ export class Team extends Entity<TeamJSON> {
         id: json.id,
         name: json.name
       },
-      []
+      accounts
     );
   }
 
-  static new(name: TeamName): Team {
+  public static new(name: TeamName): Team {
     return new Team({
       id: Team.generateUUID(),
       name: name

@@ -60,3 +60,5 @@ typings/
 
 packages/**/**/*.js
 packages/**/**/*.d.ts
+
+!/.vscode

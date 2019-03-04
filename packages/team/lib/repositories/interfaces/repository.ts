@@ -1,8 +1,8 @@
-import { IRead } from "./read";
-import { IWrite } from "./write";
+import { Read } from "./read";
+import { Write } from "./write";
 
 import { IDataStore } from "@juiz/datastore";
 
-export interface IRepository<T> extends IRead<T>, IWrite<T> {
+export interface Repository<T> extends Read<T>, Write<T> {
   context: IDataStore;
 }

@@ -1,0 +1,9 @@
+{
+  "eslint.roots": ["."],
+  "eslint.workingDirectories": [
+    "./packages/datastore",
+    "./packages/github",
+    "./packages/team",
+    "./packages/@juiz/datastore-gooogle-apis-sheets"
+  ]
+}

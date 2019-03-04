@@ -35,7 +35,7 @@ export const getAccessTokenCredentials = (): IAccessTokenCredentials => {
 };
 
 export const tokenStoreReadlineInterface = (
-  params: Auth.IGoogleAuthClientParams
+  params: Auth.GoogleAuthClientParams
 ) => {
   const rl = readline.createInterface({
     input: process.stdin,
