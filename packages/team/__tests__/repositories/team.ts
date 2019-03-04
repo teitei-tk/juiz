@@ -3,13 +3,13 @@ import { JSONClient } from "@juiz/datastore";
 import { Services, Account, Team, TeamJSON, Repository } from "./../../lib";
 
 class TeamRepository implements Repository<Team> {
-  context: JSONClient;
+  public readonly context: JSONClient;
 
-  constructor(context: JSONClient) {
+  public constructor(context: JSONClient) {
     this.context = context;
   }
 
-  create(json: Team): Promise<{ entity: Team }> {
+  public create(json: Team): Promise<{ entity: Team }> {
     this.context.create(json.toJSON());
 
     return Promise.resolve({
@@ -17,7 +17,7 @@ class TeamRepository implements Repository<Team> {
     });
   }
 
-  update(json: Team) {
+  public update(json: Team) {
     this.context.put(json.toJSON());
 
     return Promise.resolve({
@@ -25,7 +25,7 @@ class TeamRepository implements Repository<Team> {
     });
   }
 
-  delete(json?: Team) {
+  public delete(json?: Team) {
     this.context.delete();
 
     return Promise.resolve({
@@ -33,19 +33,21 @@ class TeamRepository implements Repository<Team> {
     });
   }
 
-  find(): Promise<{ entity: Team }> {
+  public find(): Promise<{ entity: Team }> {
     const j = this.context.get<TeamJSON>();
     return Promise.resolve({
       entity: Team.fromJSON(j)
     });
   }
 
-  findAll() {
+  public findAll() {
     throw new Error("not supported");
 
+    /* eslint-disable */
     return Promise.resolve({
       entities: []
     });
+    /* eslint-enable */
   }
 }
 

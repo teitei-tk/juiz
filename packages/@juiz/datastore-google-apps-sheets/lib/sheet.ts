@@ -24,9 +24,9 @@ export class SpreadSheet implements IDataStore {
   private readonly oauthClient: DataStoreGoogleSheets.OAuthClient;
   private readonly spreadSheetID: SpreadSheetID;
 
-  readonly spreadSheetClient: SheetClient;
+  public readonly spreadSheetClient: SheetClient;
 
-  constructor(value: {
+  public constructor(value: {
     oauthClient: DataStoreGoogleSheets.OAuthClient;
     credential: DataStoreGoogleSheets.IAccessTokenCredentials;
     spreadsheetID: SpreadSheetID;
@@ -38,7 +38,7 @@ export class SpreadSheet implements IDataStore {
     this.spreadSheetClient = google.sheets("v4");
   }
 
-  fetch(query: {
+  public fetch(query: {
     range: string;
     majorDimension?: Dimension;
     valueRenderOption?: ValueRenderOption;
@@ -58,7 +58,7 @@ export class SpreadSheet implements IDataStore {
     });
   }
 
-  update(query: {
+  public update(query: {
     payload: {
       range: string;
       values: unknown[][];

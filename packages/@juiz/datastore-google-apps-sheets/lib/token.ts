@@ -4,7 +4,7 @@ import * as readline from "readline";
 
 import * as Auth from "./auth";
 
-export interface IAccessTokenCredentials {
+export interface AccessTokenCredentials {
   access_token: string;
   refresh_token: string;
   scope: string;
@@ -22,12 +22,12 @@ export const ACCESS_TOKEN_FILE_PATH = path.join(
   ACCESS_TOKEN_FILE_NAME
 );
 
-export const getAccessTokenCredentials = (): IAccessTokenCredentials => {
+export const getAccessTokenCredentials = (): AccessTokenCredentials => {
   const sheetTokenCredential = fs
     .readFileSync(ACCESS_TOKEN_FILE_PATH)
     .toString();
 
-  const accessTokenCredentials: IAccessTokenCredentials = JSON.parse(
+  const accessTokenCredentials: AccessTokenCredentials = JSON.parse(
     sheetTokenCredential
   );
 

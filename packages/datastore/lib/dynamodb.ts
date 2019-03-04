@@ -2,10 +2,10 @@ import * as AWS from "aws-sdk";
 import { DataStore } from ".";
 
 export class DynamoDBClient implements DataStore {
-  protected tableName: string;
-  protected context: AWS.DynamoDB.DocumentClient;
+  protected readonly tableName: string;
+  protected readonly context: AWS.DynamoDB.DocumentClient;
 
-  constructor(tableName: string, context?: AWS.DynamoDB.DocumentClient) {
+  public constructor(tableName: string, context?: AWS.DynamoDB.DocumentClient) {
     this.tableName = tableName;
 
     if (!context) {
@@ -14,7 +14,7 @@ export class DynamoDBClient implements DataStore {
     this.context = context;
   }
 
-  get(
+  public get(
     params: AWS.DynamoDB.DocumentClient.Key,
     operations?: {
       AttributesToGet?: AWS.DynamoDB.DocumentClient.AttributeNameList;
@@ -36,7 +36,7 @@ export class DynamoDBClient implements DataStore {
     return this.context.get(requestPayload).promise();
   }
 
-  put(
+  public put(
     params: AWS.DynamoDB.DocumentClient.Key,
     operations?: {
       Expected?: AWS.DynamoDB.DocumentClient.ExpectedAttributeMap;
@@ -61,7 +61,7 @@ export class DynamoDBClient implements DataStore {
     return this.context.put(requestPayload).promise();
   }
 
-  delete(
+  public delete(
     params: AWS.DynamoDB.DocumentClient.Key,
     operations?: {
       Expected?: AWS.DynamoDB.DocumentClient.ExpectedAttributeMap;
@@ -86,7 +86,7 @@ export class DynamoDBClient implements DataStore {
     return this.context.delete(requestPayload).promise();
   }
 
-  query(
+  public query(
     params: {
       names: AWS.DynamoDB.DocumentClient.ExpressionAttributeNameMap;
       values: AWS.DynamoDB.DocumentClient.ExpressionAttributeValueMap;
@@ -125,7 +125,7 @@ export class DynamoDBClient implements DataStore {
     return this.context.query(requestPayload).promise();
   }
 
-  scan(
+  public scan(
     params: {
       filter: AWS.DynamoDB.DocumentClient.ConditionExpression;
       names: AWS.DynamoDB.DocumentClient.ExpressionAttributeNameMap;

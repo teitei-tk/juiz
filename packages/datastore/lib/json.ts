@@ -9,9 +9,9 @@ export type fileName = string;
 export const defaultJSONFileName = "json_client.json";
 
 export class JSONClient implements DataStore {
-  readonly jsonPath: filePath;
+  protected readonly jsonPath: filePath;
 
-  constructor(jsonPath: filePath, jsonName?: fileName) {
+  public constructor(jsonPath: filePath, jsonName?: fileName) {
     if (!jsonName) {
       jsonName = defaultJSONFileName;
     }
@@ -24,32 +24,32 @@ export class JSONClient implements DataStore {
     }
   }
 
-  generateJSONFile() {
+  public generateJSONFile() {
     // mkdir -p jsonPath
     fs.mkdirSync(path.dirname(this.jsonPath), { recursive: true });
     this.create({});
   }
 
-  exists() {
+  public exists() {
     fs.accessSync(this.jsonPath, fs.constants.R_OK | fs.constants.W_OK);
     return true;
   }
 
-  create(data: object) {
+  public create(data: object) {
     fs.writeFileSync(this.jsonPath, JSON.stringify(data));
   }
 
-  get<T>(): T {
+  public get<T>(): T {
     const readJson = fs.readFileSync(this.jsonPath);
     return JSON.parse(readJson.toString());
   }
 
-  put(data: object) {
+  public put(data: object) {
     this.delete();
     this.create(data);
   }
 
-  delete() {
+  public delete() {
     fs.unlinkSync(this.jsonPath);
   }
 }
