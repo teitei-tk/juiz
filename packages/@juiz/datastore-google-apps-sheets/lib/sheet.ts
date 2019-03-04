@@ -28,7 +28,7 @@ export class SpreadSheet implements IDataStore {
 
   public constructor(value: {
     oauthClient: DataStoreGoogleSheets.OAuthClient;
-    credential: DataStoreGoogleSheets.IAccessTokenCredentials;
+    credential: DataStoreGoogleSheets.AccessTokenCredentials;
     spreadsheetID: SpreadSheetID;
   }) {
     this.oauthClient = value.oauthClient;
