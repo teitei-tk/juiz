@@ -4,6 +4,9 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">=11"
+  },
   "scripts": {
     "build": "tsc",
     "test": "jest"

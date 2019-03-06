@@ -2,7 +2,6 @@ module.exports = {
   env: {
     node: true,
     browser: false,
-    es6: true,
     "jest/globals": true
   },
   extends: [
@@ -20,7 +19,7 @@ module.exports = {
   plugins: ["xss", "@typescript-eslint", "jest"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2018,
     sourceType: "module",
     project: "./tsconfig.json",
     tsconfigRootDir: __dirname
@@ -39,9 +38,10 @@ module.exports = {
     "node/no-unsupported-features/es-syntax": [
       "error",
       {
-        version: ">=8",
         ignores: ["modules"]
       }
-    ]
+    ],
+    "@typescript-eslint/no-var-requires": 1,
+    "@typescript-eslint/camelcase": 1
   }
 };
