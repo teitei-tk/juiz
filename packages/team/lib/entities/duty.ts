@@ -29,6 +29,10 @@ export class Duty extends Entity<DutyJSON> {
     };
   }
 
+  public fromJSON(json: DutyJSON) {
+    return Duty.fromJSON(json);
+  }
+
   public static fromJSON(json: DutyJSON) {
     return new Duty({
       id: json.id,

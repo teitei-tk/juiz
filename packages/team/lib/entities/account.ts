@@ -60,6 +60,10 @@ export class Account extends Entity<AccountJSON> {
     };
   }
 
+  public fromJSON(json: AccountJSON) {
+    return Account.fromJSON(json);
+  }
+
   public static fromJSON(json: AccountJSON) {
     const serviceAccounts = json.serviceAccounts.map(obj => {
       if (obj.service == Services.Github) {

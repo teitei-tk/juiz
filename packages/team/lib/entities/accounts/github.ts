@@ -25,6 +25,10 @@ export class Github extends ServiceAccount<Services.Github> {
     return new Github(value);
   }
 
+  public fromJSON(json: ServiceJSON) {
+    return Github.fromJSON(json);
+  }
+
   public toJSON(): ServiceJSON {
     return {
       id: this.id,

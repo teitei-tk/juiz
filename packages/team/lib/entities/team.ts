@@ -36,6 +36,10 @@ export class Team extends Entity<TeamJSON> {
     };
   }
 
+  public fromJSON(json: TeamJSON): Team {
+    return Team.fromJSON(json);
+  }
+
   public static fromJSON(json: TeamJSON): Team {
     const accounts: Account[] = [];
     if (json.accounts) {

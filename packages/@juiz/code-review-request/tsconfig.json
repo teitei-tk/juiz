@@ -1,11 +1,10 @@
 {
-  "extends": "./../../tsconfig.json",
+  "extends": "./../../../tsconfig.json",
   "compilerOptions": {
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "rootDir": "./lib",
-    "outDir": "./build",
-    "experimentalDecorators": true
+    "outDir": "./build"
   },
   "include": ["./lib/**/*.ts"],
   "exclude": ["node_modules", "build", "__tests__"]

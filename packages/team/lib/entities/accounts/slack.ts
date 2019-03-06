@@ -25,6 +25,10 @@ export class Slack extends ServiceAccount<Services.Slack> {
     return new Slack(value);
   }
 
+  public fromJSON(json: ServiceJSON) {
+    return Slack.fromJSON(json);
+  }
+
   public toJSON(): ServiceJSON {
     return Object.assign(
       {},
