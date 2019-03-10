@@ -25,12 +25,27 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@juiz/datastore@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@juiz/datastore/-/datastore-0.0.3.tgz#7cf3027b858ae427b96cb5b69254d0cfb7186024"
+  integrity sha512-pm7UeqmV+vM/dHsmghbIacErbzXi5DGJXALZRCR3ad4JclpN6PDOfVubHlpXx7ijI2dr6toSySwsaSUfwBzkZw==
+  dependencies:
+    aws-sdk "^2.337.0"
+
 "@juiz/datastore@^0.0.4":
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@juiz/datastore/-/datastore-0.0.4.tgz#039ba7962441068ccd2360aa8be262e3ed21bbbf"
   integrity sha512-NuJYHJaPCnVAZy1u3cWlI5kt/Gm5bDykNlAItIiuQscnmWhE1ER4MojNLHY/ObzmcNR0jPdDjFqYHEGhuowg3g==
   dependencies:
     aws-sdk "^2.337.0"
+
+"@juiz/team@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@juiz/team/-/team-0.0.6.tgz#766a202c9f4d38cf764986ec73329da46aa587ee"
+  integrity sha512-sMpbJHeU2igYElN+M2+sdGpelP3yPuGkxZlx4SVDYbV5x65cU3c1R0cD0DY2hUKCeaQC7JeKxxft4El8FsOhLg==
+  dependencies:
+    "@juiz/datastore" "^0.0.3"
+    uuid "^3.3.2"
 
 "@lerna/add@3.13.1":
   version "3.13.1"
@@ -707,6 +722,13 @@
     graphql "^14.0.0-rc.1"
     graphql-tag "^2.8.0"
 
+"@octokit/graphql@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@octokit/graphql/-/graphql-2.0.1.tgz#0e9d7f41d6ac3305f37767e723183bd0b77af7d2"
+  integrity sha512-IBNr05yBYqffy9L37Vv3/5xQMw+swmYFtMsuwqUA5vSEUr+s/POf8DOpCaTtS8f7e9k+cEuKLC5AbOoXkdZZOA==
+  dependencies:
+    "@octokit/request" "^2.1.2"
+
 "@octokit/plugin-enterprise-rest@^2.1.1":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@octokit/plugin-enterprise-rest/-/plugin-enterprise-rest-2.1.2.tgz#259bd5ac00825a8a482ff6584ae9aed60acd0b41"
@@ -720,6 +742,18 @@
     "@octokit/endpoint" "^3.1.1"
     is-plain-object "^2.0.4"
     node-fetch "^2.3.0"
+    universal-user-agent "^2.0.1"
+
+"@octokit/request@^2.1.2":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@octokit/request/-/request-2.4.1.tgz#98c4d6870e4abe3ccdd2b9799034b4ae3f441c30"
+  integrity sha512-nN8W24ZXEpJQJoVgMsGZeK9FOzxkc39Xn9ykseUpPpPMNEDFSvqfkCeqqKrjUiXRm72ubGLWG1SOz0aJPcgGww==
+  dependencies:
+    "@octokit/endpoint" "^3.1.1"
+    deprecation "^1.0.1"
+    is-plain-object "^2.0.4"
+    node-fetch "^2.3.0"
+    once "^1.4.0"
     universal-user-agent "^2.0.1"
 
 "@octokit/rest@^15.11.2":
@@ -2155,6 +2189,11 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
   integrity sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=
+
+deprecation@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/deprecation/-/deprecation-1.0.1.tgz#2df79b79005752180816b7b6e079cbd80490d711"
+  integrity sha512-ccVHpE72+tcIKaGMql33x5MAjKQIZrk+3x2GbJ7TeraUCZWHoT+KSZpoC+JQFsUBlSTXUrBaGiF0j6zVTepPLg==
 
 detect-indent@^4.0.0:
   version "4.0.0"

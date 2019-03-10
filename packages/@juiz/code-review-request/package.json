@@ -22,8 +22,8 @@
     "ts-node": "^7.0.1"
   },
   "dependencies": {
-    "@juiz/github": "^0.0.3",
     "@juiz/team": "^0.0.6",
+    "@octokit/graphql": "^2.0.1",
     "typescript": "^3.3.3333"
   },
   "jest": {
