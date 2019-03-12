@@ -36,6 +36,10 @@ export class Team extends Entity<TeamJSON> {
     };
   }
 
+  public fromJSON(json: TeamJSON): Team {
+    return Team.fromJSON(json);
+  }
+
   public static fromJSON(json: TeamJSON): Team {
     const accounts: Account[] = [];
     if (json.accounts) {
@@ -53,10 +57,13 @@ export class Team extends Entity<TeamJSON> {
     );
   }
 
-  public static new(name: TeamName): Team {
-    return new Team({
-      id: Team.generateUUID(),
-      name: name
-    });
+  public static new(name: TeamName, accounts?: Account[]): Team {
+    return new Team(
+      {
+        id: Team.generateUUID(),
+        name: name
+      },
+      accounts
+    );
   }
 }

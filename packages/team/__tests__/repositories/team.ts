@@ -1,62 +1,25 @@
 import { JSONClient } from "@juiz/datastore";
 
-import { Services, Account, Team, TeamJSON, Repository } from "./../../lib";
+import {
+  Services,
+  Account,
+  Team,
+  TeamJSON,
+  JSONRepository,
+  injectEntity
+} from "./../../lib";
 
-class TeamRepository implements Repository<Team> {
-  public readonly context: JSONClient;
-
-  public constructor(context: JSONClient) {
-    this.context = context;
-  }
-
-  public create(json: Team): Promise<{ entity: Team }> {
-    this.context.create(json.toJSON());
-
-    return Promise.resolve({
-      entity: json
-    });
-  }
-
-  public update(json: Team) {
-    this.context.put(json.toJSON());
-
-    return Promise.resolve({
-      entity: json
-    });
-  }
-
-  public delete(json?: Team) {
-    this.context.delete();
-
-    return Promise.resolve({
-      entity: json
-    });
-  }
-
-  public find(): Promise<{ entity: Team }> {
-    const j = this.context.get<TeamJSON>();
-    return Promise.resolve({
-      entity: Team.fromJSON(j)
-    });
-  }
-
-  public findAll() {
-    throw new Error("not supported");
-
-    /* eslint-disable */
-    return Promise.resolve({
-      entities: []
-    });
-    /* eslint-enable */
-  }
-}
+@injectEntity(Team)
+class TeamRepository extends JSONRepository<Team, TeamJSON> {}
 
 describe("team.repositories.team", () => {
   let repo: TeamRepository;
 
   beforeAll(() => {
     const json = new JSONClient("/tmp/foo");
-    repo = new TeamRepository(json);
+    repo = new TeamRepository({
+      context: json
+    });
   });
 
   afterEach(() => {
@@ -98,7 +61,7 @@ describe("team.repositories.team", () => {
         {
           id: "a",
           name: "teitei-tk",
-          service: Services.Github
+          service: Services.GitHub
         },
         {
           id: "a",

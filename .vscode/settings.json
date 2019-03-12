@@ -4,6 +4,7 @@
     "./packages/datastore",
     "./packages/github",
     "./packages/team",
-    "./packages/@juiz/datastore-gooogle-apis-sheets"
+    "./packages/@juiz/datastore-gooogle-apis-sheets",
+    "./packages/@juiz/code-review-request"
   ]
 }
