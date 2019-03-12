@@ -57,10 +57,13 @@ export class Team extends Entity<TeamJSON> {
     );
   }
 
-  public static new(name: TeamName): Team {
-    return new Team({
-      id: Team.generateUUID(),
-      name: name
-    });
+  public static new(name: TeamName, accounts?: Account[]): Team {
+    return new Team(
+      {
+        id: Team.generateUUID(),
+        name: name
+      },
+      accounts
+    );
   }
 }

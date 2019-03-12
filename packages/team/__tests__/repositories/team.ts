@@ -61,7 +61,7 @@ describe("team.repositories.team", () => {
         {
           id: "a",
           name: "teitei-tk",
-          service: Services.Github
+          service: Services.GitHub
         },
         {
           id: "a",

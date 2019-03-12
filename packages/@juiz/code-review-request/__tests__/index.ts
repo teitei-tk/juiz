@@ -1,25 +1,39 @@
+//import { PullRequestSearch } from "./../lib";
+
+interface PullRequestResult {
+  repository: {
+    pullRequests: {
+      edges: {
+        title: string;
+        url: string;
+      }[];
+    };
+  };
+}
+
 describe("@juiz/code-review-request", () => {
   it("code-review-request exists", async () => {
     expect(true).toBe(true);
 
     /*
-    import { PullRequestSearch } from "./../lib";
     const service = new PullRequestSearch({
       token: "token"
     });
 
-    const result = await service.fetch(
+    const result = await service.fetch<PullRequestResult>(
       `query pullRequests($owner: String!, $repo: String!, $last: Int = 3, $labels: [String!]) {
         repository(owner: $owner, name: $repo) {
           pullRequests(last: $last, labels: $labels) {
             edges {
               node {
+                url
                 title
               }
             }
           }
         }
-      }`, {
+      }`,
+      {
         owner: "octokit",
         repo: "octokit.rb",
         last: 50,

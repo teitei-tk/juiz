@@ -1,19 +1,31 @@
 # juiz/code-review-request
 
 ## Dependency
-* [octokit/graphql.js](https://github.com/octokit/graphql.js)
+
+- [octokit/graphql.js](https://github.com/octokit/graphql.js)
 
 ## Usage
 
 ```typescript
 import { PullRequestSearch } from "@juiz/code-review-request";
 
-(async() => {
+interface PullRequestResult {
+  repository: {
+    pullRequests: {
+      edges: {
+        url: string;
+        title: string;
+      }[];
+    };
+  };
+}
+
+(async () => {
   const service = new PullRequestSearch({
     token: "token"
   });
 
-  const result = await service.fetch(
+  const result = await service.fetch<PullRequestResult>(
     `query pullRequests($owner: String!, $repo: String!, $last: Int = 50, $labels: [String!]) {
       repository(owner: $owner, name: $repo) {
         pullRequests(last: $last, labels: $labels) {
@@ -25,9 +37,10 @@ import { PullRequestSearch } from "@juiz/code-review-request";
           }
         }
       }
-    }`, {
+    }`,
+    {
       owner: "octokit",
-      repo: "octokit.rb",    // watch repo
+      repo: "octokit.rb", // watch repo
       last: 50,
       labels: ["v5 release"] // PullRequest label to review
     }
@@ -39,8 +52,18 @@ import { PullRequestSearch } from "@juiz/code-review-request";
   console.log(result.repository.pullRequests.edges);
   /*
     [
-      { node: { title: 'Update docs to indicate Ruby < 2.2 not supported' } },
-      { node: { title: 'Change the default value of `update_ref` `force` to false' } }
+      {
+        node: {
+          url: 'https://github.com/octokit/octokit.rb/pull/948',
+          title: 'Update docs to indicate Ruby < 2.2 not supported'
+        }
+      },
+      {
+        node: {
+          url: 'https://github.com/octokit/octokit.rb/pull/980',
+          title: 'Change the default value of `update_ref` `force` to false'
+        }
+      }
     ]
   */
 })();

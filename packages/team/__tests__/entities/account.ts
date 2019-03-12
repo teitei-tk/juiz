@@ -24,7 +24,7 @@ describe("team.entities.account", () => {
           {
             id: "a",
             name: "teitei-tk",
-            service: Services.Github
+            service: Services.GitHub
           },
           {
             id: "a",
@@ -45,7 +45,7 @@ describe("team.entities.account", () => {
             id: "a",
             displayName: "teitei-tk",
             name: "teitei-tk",
-            service: Services.Github
+            service: Services.GitHub
           },
           {
             id: "a",
@@ -68,7 +68,7 @@ describe("team.entities.account", () => {
           {
             id: "a",
             name: "teitei-tk",
-            service: Services.Github
+            service: Services.GitHub
           },
           {
             id: "a",
@@ -91,7 +91,7 @@ describe("team.entities.account", () => {
           {
             id: "a",
             name: "teitei-tk",
-            service: Services.Github
+            service: Services.GitHub
           },
           {
             id: "a",
@@ -105,7 +105,7 @@ describe("team.entities.account", () => {
       expect(account.id).toBe(json.id);
       expect(account.name).toBe(json.name);
 
-      const github = account.findServiceAccount(Services.Github);
+      const github = account.findServiceAccount(Services.GitHub);
       expect(github.name).toBe("teitei-tk");
 
       const slack = account.findServiceAccount(Services.Slack);

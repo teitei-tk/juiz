@@ -1,12 +1,14 @@
 import {
   Services,
-  ServiceJSON,
   ServiceAccount,
+  ServiceJSON,
   ServiceAccountName
 } from "./..";
 
-export class Slack extends ServiceAccount<Services.Slack> {
+export class Slack extends ServiceAccount {
   public readonly name: ServiceAccountName;
+  public readonly displayName: ServiceAccountName;
+  public readonly service: Services.Slack;
 
   public constructor(value: ServiceJSON) {
     super();
@@ -21,23 +23,28 @@ export class Slack extends ServiceAccount<Services.Slack> {
     this.service = Services.Slack;
   }
 
-  public static fromJSON(value: ServiceJSON) {
+  public static fromJSON(value: ServiceJSON): Slack {
     return new Slack(value);
   }
 
-  public fromJSON(json: ServiceJSON) {
+  public fromJSON(json: ServiceJSON): Slack {
     return Slack.fromJSON(json);
   }
 
   public toJSON(): ServiceJSON {
-    return Object.assign(
-      {},
-      {
-        id: this.id,
-        name: this.name,
-        displayName: this.displayName,
-        service: Services.Slack
-      }
-    );
+    return {
+      id: this.id,
+      name: this.name,
+      displayName: this.displayName,
+      service: this.service
+    };
+  }
+
+  public static new(name: ServiceAccountName): Slack {
+    return new Slack({
+      id: Slack.generateUUID(),
+      name,
+      service: Services.Slack
+    });
   }
 }

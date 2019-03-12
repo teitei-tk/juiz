@@ -1,7 +1,7 @@
 export type GraphQLClient = Function;
 export type GraphQLClientToken = string;
 
-const GraphQL = require("@octokit/graphql") as GraphQLClient;
+import GraphQL = require("@octokit/graphql");
 
 export class PullRequestSearch {
   protected readonly client: GraphQLClient;
@@ -21,7 +21,7 @@ export class PullRequestSearch {
    * @param query
    * @param options https://developer.github.com/v4/object/repository/
    */
-  public async fetch(query: string, options?: object) {
+  public async fetch<T>(query: string, options?: object): Promise<T> {
     const requestOptions = {
       ...options,
       ...{
