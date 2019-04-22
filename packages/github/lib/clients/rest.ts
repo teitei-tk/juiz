@@ -15,8 +15,8 @@ export class RestClient implements APIClientInterface {
     this.authenticate(options.token);
   }
 
-  protected authenticate(token: GithubToken) {
-    return this.client.authenticate({
+  protected authenticate(token: GithubToken): void {
+    this.client.authenticate({
       type: "token",
       token: token
     });
@@ -26,7 +26,9 @@ export class RestClient implements APIClientInterface {
     return Promise.resolve(this.client);
   }
 
-  public async createPullRequest(params: Octkit.PullRequestsCreateParams) {
+  public async createPullRequest(
+    params: Octkit.PullRequestsCreateParams
+  ): Promise<Octkit.Response<Octkit.PullRequestsCreateResponse>> {
     const client = await this.request();
     return await client.pullRequests.create(params);
   }

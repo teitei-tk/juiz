@@ -5,7 +5,7 @@ export type ServiceAccountName = string;
 export type ServieIdentityID = number | string;
 
 export enum Services {
-  Github = 0,
+  GitHub = 0,
   Slack = 1
 }
 
@@ -13,14 +13,13 @@ export interface ServiceJSON extends EntityJSON {
   id: ServiceAccountID;
   name: ServiceAccountName;
   displayName?: ServiceAccountName;
-  service: Services;
+  service?: Services;
   serviceId?: ServieIdentityID;
 }
 
-export abstract class ServiceAccount<S extends Services> extends Entity<
-  ServiceJSON
-> {
+export abstract class ServiceAccount extends Entity<ServiceJSON> {
+  public id: ServiceAccountID;
   public name: ServiceAccountName;
   public displayName: ServiceAccountName;
-  public service: S;
+  public service: Services;
 }

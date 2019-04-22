@@ -1,13 +1,6 @@
-import {
-  Services,
-  ServiceJSON,
-  ServiceAccount,
-  ServiceAccountName
-} from "./..";
+import { Services, ServiceJSON, ServiceAccount } from "./..";
 
-export class Github extends ServiceAccount<Services.Github> {
-  public readonly name: ServiceAccountName;
-
+export class GitHub extends ServiceAccount {
   public constructor(value: ServiceJSON) {
     super();
 
@@ -18,11 +11,11 @@ export class Github extends ServiceAccount<Services.Github> {
       this.displayName = value.name;
     }
 
-    this.service = Services.Github;
+    this.service = Services.GitHub;
   }
 
-  public static fromJSON(value: ServiceJSON) {
-    return new Github(value);
+  public static fromJSON(value: ServiceJSON): GitHub {
+    return new GitHub(value);
   }
 
   public toJSON(): ServiceJSON {
@@ -30,7 +23,7 @@ export class Github extends ServiceAccount<Services.Github> {
       id: this.id,
       name: this.name,
       displayName: this.displayName,
-      service: Services.Github
+      service: Services.GitHub
     };
   }
 }
