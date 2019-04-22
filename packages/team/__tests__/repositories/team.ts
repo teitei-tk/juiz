@@ -17,7 +17,7 @@ class TeamRepository implements Repository<Team> {
     });
   }
 
-  public update(json: Team) {
+  public update(json: Team): Promise<{ entity: Team }> {
     this.context.put(json.toJSON());
 
     return Promise.resolve({
@@ -25,7 +25,7 @@ class TeamRepository implements Repository<Team> {
     });
   }
 
-  public delete(json?: Team) {
+  public delete(json?: Team): Promise<{ entity: Team }> {
     this.context.delete();
 
     return Promise.resolve({
@@ -98,7 +98,7 @@ describe("team.repositories.team", () => {
         {
           id: "a",
           name: "teitei-tk",
-          service: Services.Github
+          service: Services.GitHub
         },
         {
           id: "a",

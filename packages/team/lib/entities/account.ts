@@ -5,7 +5,7 @@ import {
   ServiceJSON,
   Services,
   Slack,
-  Github
+  GitHub
 } from ".";
 
 export type AccountID = string;
@@ -19,14 +19,14 @@ export interface AccountJSON extends EntityJSON {
 
 export class Account extends Entity<AccountJSON> {
   public readonly name: AccountName;
-  public readonly serviceAccounts?: ServiceAccount<Services>[];
+  public readonly serviceAccounts?: ServiceAccount[];
 
   public constructor(
     value: {
       id: AccountID;
       name: AccountName;
     },
-    accounts?: ServiceAccount<Services>[]
+    accounts?: ServiceAccount[]
   ) {
     super();
 
@@ -40,11 +40,11 @@ export class Account extends Entity<AccountJSON> {
     this.serviceAccounts = accounts;
   }
 
-  public appendServiceAccount(serviceAccount: ServiceAccount<Services>): void {
+  public appendServiceAccount(serviceAccount: ServiceAccount): void {
     this.serviceAccounts.push(serviceAccount);
   }
 
-  public findServiceAccount(service: Services): ServiceAccount<Services> {
+  public findServiceAccount(service: Services): ServiceAccount {
     return this.serviceAccounts.find(r => {
       return r.service == service;
     });
@@ -60,10 +60,10 @@ export class Account extends Entity<AccountJSON> {
     };
   }
 
-  public static fromJSON(json: AccountJSON) {
+  public static fromJSON(json: AccountJSON): Account {
     const serviceAccounts = json.serviceAccounts.map(obj => {
-      if (obj.service == Services.Github) {
-        return Github.fromJSON(obj);
+      if (obj.service == Services.GitHub) {
+        return GitHub.fromJSON(obj);
       } else {
         return Slack.fromJSON(obj);
       }

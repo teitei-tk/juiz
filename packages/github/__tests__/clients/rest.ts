@@ -1,7 +1,10 @@
 import * as sinon from "sinon";
-import { RestClient } from "../../lib/clients";
+import Octkit = require("@octokit/rest");
 
-const pullRequestResponse = require("./../fixture/pull_request_response.json");
+import { RestClient } from "../../lib/clients";
+const pullRequestResponse: Octkit.Response<
+  Octkit.PullRequestsCreateResponse
+> = require("./../fixture/pull_request_response.json");
 
 describe("github.clients.rest", () => {
   describe("#createPullRequest", () => {
@@ -18,11 +21,8 @@ describe("github.clients.rest", () => {
       };
 
       client = new RestClient(params);
-      stub = sinon.stub(client, "createPullRequest").returns(
-        Promise.resolve({
-          data: pullRequestResponse
-        })
-      );
+      const ret = Promise.resolve(pullRequestResponse);
+      stub = sinon.stub(client, "createPullRequest").returns(ret);
     });
 
     afterEach(() => {
