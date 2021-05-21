@@ -17,7 +17,7 @@
   "dependencies": {
     "@octokit/graphql-schema": "^4.8.0",
     "@octokit/rest": "^15.11.2",
-    "axios": "^0.18.0"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@types/graphql": "^14.0.0",
